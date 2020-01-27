@@ -1,0 +1,37 @@
+{
+  "name": "global-game-jam-2020",
+  "version": "1.0.0",
+  "description": "Yeah! It's the Global Game Jam 2020!",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Diegslapasteque/Global-Game-Jam-2020.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Diegslapasteque/Global-Game-Jam-2020/issues"
+  },
+  "homepage": "https://github.com/Diegslapasteque/Global-Game-Jam-2020#readme",
+  "build": {
+    "appId": "com.electron.ggj2020",
+    "productName": "Global Game Jam 2020",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "**/*",
+      "assets/icon.*"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^7.1.10",
+    "electron-builder": "^22.3.2"
+  }
+}
