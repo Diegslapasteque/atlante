@@ -12,22 +12,41 @@
     justify-content: center;
     flex-direction: column;
     align-items: start;
-    height: 100vh ;
-    width: 35vh;
+    height: 896px;
+    width: 500px;
     margin: auto;
     top : 0;
-    left : 35vw;
+    left : 30%;
     background: rgba(0, 0, 0, 0.85);
 }
+
+#book{
+    display: none;
+    position: absolute;
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+    height: 896px ;
+    width: 500px;
+    margin: auto;
+    top : 0;
+    left : 30%;
+    font-family: 'Press Start 2P';
+    color : white;
+    background: rgba(0, 0, 0, .9);
+}
+
 
 .active{
     display: flex !important;
 }
 
 #end-of-the-day p{
-    width : 80%;
+    width : 90%;
     margin:  5% auto;
     color : white;
+    font-family: 'Press Start 2P';
+    text-align: center;
     font-size: 24px;
 }
 
@@ -37,6 +56,11 @@ ul{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+ul li{
+    margin : 1% 0%;
+    font-family: 'Press Start 2P';
 }
 
 #timer-container{
@@ -50,7 +74,8 @@ ul{
 #timer{
     display: block;
     color : white;
-    font-size: 28px;
+    font-family: 'Press Start 2P';
+    font-size: 20px;
     margin: 1% auto;
     width : 900px;
     color: white;

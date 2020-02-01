@@ -110,6 +110,15 @@ const ASSETS = {
             'assets/tiles/MurHaut02.png'
         ]
     },
+    17:{
+        haveCollision: true,
+
+        interaction : readBookOfRecipe,
+
+        sprites: [
+            'assets/tiles/PlancheCauldron.png'
+        ]
+    },
 
     player: {
         width: 50,

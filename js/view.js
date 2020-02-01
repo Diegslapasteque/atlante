@@ -18,7 +18,7 @@ var V = {
 
     initTimer(){
         document.getElementById('timer').innerHTML =
-            3 + ":" + 01;
+            `3:01`;
         V.startTimer();
     },
 
@@ -89,6 +89,39 @@ var V = {
             stats.classList.remove('active');
             V.initTimer();
             C.resetGameLoop();
+        })
+    },
+
+    renderBook(objects) {
+        var recipies = document.querySelector('#book');
+        var potionRecipies = document.querySelector("#Potions-recipes");
+        var runesRecipies = document.querySelector("#Runes-recipes");
+        var scrollsRecipies = document.querySelector("#Parchemins-recipes");
+        potionRecipies.innerHTML = "";
+        runesRecipies.innerHTML = "";
+        scrollsRecipies.innerHTML = "";
+
+        recipies.classList.add('active');
+        Object.entries(objects).forEach(recipiestype => {
+            var objectType = document.querySelector("#"+recipiestype[0]+"-recipes");
+            Object.entries(recipiestype[1]).forEach(recipe => {
+
+                var object = document.createElement('li')
+                var objectTitle = document.createElement('p');
+                objectTitle.innerText = recipe[0]+" => \n"
+                var objectRecipe = document.createElement('p');
+                objectRecipe.innerText = recipe[1].recipe;
+                var objectEffect = document.createElement('p');
+                objectEffect.innerText = recipe[1].effect;
+                object.appendChild(objectTitle);
+                object.appendChild(objectRecipe);
+                object.appendChild(objectEffect);
+                objectType.appendChild(object);
+            });
+
+        });
+        document.querySelector('#quit-book').addEventListener('click',function(event){
+            recipies.classList.remove('active');
         })
     },
 
