@@ -114,7 +114,7 @@ const ASSETS = {
         interaction : readBookOfRecipe,
 
         sprites: [
-            'assets/tiles/PlancheCauldron.png'
+            'assets/tiles/cauldron.png'
         ]
     },
 
