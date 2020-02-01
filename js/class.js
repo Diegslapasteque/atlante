@@ -24,7 +24,7 @@ class Asset {
         }
 
         this._frameIndex = 0;
-        this._frameSpeed = 0.25;
+        this._frameSpeed = 0.125;
     }
 
     get x() {
@@ -111,6 +111,12 @@ class Asset {
         return this._haveCollision;
     }
 
+    get interaction() {
+        return this._interaction;
+    }
+
+
+
     updateAnimation() {
         this.frameIndex += this.frameSpeed;
         if(this.frameIndex >= this.sprites.length) {
@@ -118,6 +124,35 @@ class Asset {
         }
     }
 }
+
+class AssetInteraction extends Asset {
+    constructor(type, x, y, width, height) {
+        super(type, x, y, width, height);
+
+        this._interaction = ASSETS[type].interaction;
+
+        this.selected = false;
+        var pointTop = {
+            x: this.x+Math.round(this.width/2),
+            y: this.y-Math.round(this.height/2),
+        };
+        var pointBottom = {
+            x: this.x+Math.round(this.width/2),
+            y: this.y+this.height+Math.round(this.height/2),
+        };
+        var pointLeft = {
+            x: this.x-Math.round(this.width/2),
+            y: this.y+Math.round(this.height/2),
+        };
+        var pointRight = {
+            x: this.x+this.width+Math.round(this.width/2),
+            y: this.y+Math.round(this.height/2),
+        };
+        this.points = [];
+        this.points.push(pointTop, pointBottom, pointLeft, pointRight);
+    }
+}
+
 
 class MoveAsset extends Asset {
     constructor(type, x, y, width, height, speed) {
@@ -194,5 +229,23 @@ class Player extends MoveAsset {
 
     set look(value) {
         this._look = value;
+    }
+
+    move(moveX, moveY) {
+        this.x += moveX*this.speed;
+        this.y += moveY*this.speed;
+
+        this.xColli = this.x;
+        this.yColli = this.y;
+
+        if (moveX!==0 || moveY!==0) {
+            this.frameIndex += this.frameSpeed;
+            if (this.frameIndex >= this.sprites[this.looks.LOOK_DOWN].length) {
+                this.frameIndex = 0;
+            }
+        }
+        else {
+            this.frameIndex = 0;
+        }
     }
 }

@@ -80,11 +80,11 @@ const ASSETS = {
     12: {
         haveCollision: true,
         sprites: [
-            'assets/tiles/PlancheBas.png'
+            'assets/tiles/table.png'
         ]
     },
     13: {
-        haveCollision: true,
+        haveCollision: false,
         sprites: [
             'assets/tiles/PlancheBasTop.png'
         ]
@@ -92,11 +92,14 @@ const ASSETS = {
     14: {
         haveCollision: true,
         sprites: [
-            'assets/tiles/PlancheHaut.png'
+            'assets/tiles/table.png'
         ]
     },
     15: {
         haveCollision: true,
+
+        interaction : preparePotion,
+
         sprites: [
             'assets/tiles/PlancheCauldron.png'
         ]
@@ -109,20 +112,32 @@ const ASSETS = {
     },
 
     player: {
-        width: 64,
-        height: 96,
+        width: 50,
+        height: 100,
         sprites: {
             up: [
-                'assets/player/up/1.svg'
+                'assets/player/up/1.png',
+                'assets/player/up/2.png',
+                'assets/player/up/3.png',
+                'assets/player/up/2.png'
             ],
             down: [
-                'assets/player/down/1.svg'
+                'assets/player/down/1.png',
+                'assets/player/down/2.png',
+                'assets/player/down/3.png',
+                'assets/player/down/2.png'
             ],
             left: [
-                'assets/player/left/1.svg'
+                'assets/player/left/1.png',
+                'assets/player/left/2.png',
+                'assets/player/left/3.png',
+                'assets/player/left/2.png'
             ],
             right: [
-                'assets/player/right/1.svg'
+                'assets/player/right/1.png',
+                'assets/player/right/2.png',
+                'assets/player/right/3.png',
+                'assets/player/right/2.png'
             ]
         }
     },

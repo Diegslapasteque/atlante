@@ -43,7 +43,7 @@ var V = {
 
     drawAnimatedObject(obj) {
         V.context.drawImage(
-            obj.sprites[obj.look][Math.round(obj.frameIndex)],
+            obj.sprites[obj.look][Math.floor(obj.frameIndex)],
             obj.x,
             obj.y,
             obj.width,
@@ -59,6 +59,11 @@ var V = {
             obj.width,
             obj.height
         );
+    },
+
+    drawSelectedTile(obj){
+        V.context.fillStyle = "rgba(255, 255, 255, 0.2)";
+        V.context.fillRect(obj.x, obj.y, obj.width, obj.height);
     },
 
     drawBackground() {
