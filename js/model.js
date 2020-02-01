@@ -56,6 +56,7 @@ var M = {
     questObject:null,
     quests:null,
     pnjs: null,
+    endDay : true,
 
     // Objects base properties
     // Valeurs de base

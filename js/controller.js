@@ -1,10 +1,17 @@
 var C = {
 // Properties
     previousDelta: 0,
+    TIME_BEFORE_END_OF_DAY : 50,
 
 
 // Methods
     start() {
+        C.gameLoop();
+    },
+
+    resetGameLoop() {
+        M.gameState = M.PLAYING;
+        M.gameTime =0;
         C.gameLoop();
     },
 
@@ -36,7 +43,7 @@ var C = {
                 break;
 
             case M.OVER:
-                alert('La partie est terminée');
+                V.renderEndOfTHeDay(M.pnjs);
                 cancelAnimationFrame(M.gameAnimationFrame);
                 break;
         }
@@ -123,5 +130,6 @@ var C = {
             WIDTH: M.GAME_WIDTH,
             HEIGHT: M.GAME_HEIGHT
         };
-    }
+    },
+
 };
