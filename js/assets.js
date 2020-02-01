@@ -110,7 +110,7 @@ const ASSETS = {
 
     player: {
         width: 64,
-        height: 64,
+        height: 96,
         sprites: {
             up: [
                 'assets/player/up/1.svg'
