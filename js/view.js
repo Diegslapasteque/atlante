@@ -36,7 +36,7 @@ var V = {
 
     drawAnimatedObject(obj) {
         V.context.drawImage(
-            obj.sprites[obj.look][Math.round(obj.frameIndex)],
+            obj.sprites[obj.look][Math.floor(obj.frameIndex)],
             obj.x,
             obj.y,
             obj.width,
