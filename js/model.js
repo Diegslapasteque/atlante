@@ -49,7 +49,6 @@ var M = {
 
     // Game objects
     player: null,
-    background: null,
     tiles: [],
     tilesInteraction: [],
     pnj: [],
@@ -80,9 +79,6 @@ var M = {
         // Preload all the sounds
         M.initSounds();
 
-        // Background generation
-        M.background = new Asset(M.BACKGROUND_TYPE, 0, 0, M.GAME_WIDTH, M.GAME_HEIGHT);
-
         // Player generation
         M.player = new Player(
             M.PLAYER_TYPE,
@@ -91,6 +87,10 @@ var M = {
             M.PLAYER_WIDTH,
             M.PLAYER_HEIGHT,
             M.PLAYER_SPEED,
+            M.PLAYER_X,
+            M.PLAYER_Y+M.PLAYER_HEIGHT/2,
+            M.PLAYER_WIDTH,
+            M.PLAYER_HEIGHT/2,
         );
 
         M.generateMap();
@@ -301,17 +301,17 @@ var M = {
             M.player.look = M.player.looks.LOOK_UP;
         }
         // Down
-        else if(!M.up && M.down){
+        if(!M.up && M.down){
             dirY = 1;
             M.player.look = M.player.looks.LOOK_DOWN;
         }
         // Left
-        else if(M.left && !M.right){
+        if(M.left && !M.right){
             dirX = -1;
             M.player.look = M.player.looks.LOOK_LEFT;
         }
         // Right
-        else if(!M.left && M.right){
+        if(!M.left && M.right){
             dirX = 1;
             M.player.look = M.player.looks.LOOK_RIGHT;
         }
@@ -330,9 +330,6 @@ var M = {
 
         M.tile_selected = null;
         for (let k=0; k<M.tilesInteraction.length; k++){
-            if(M.tilesInteraction[k].haveCollision === true) {
-                M.handleCollision(M.player, M.tilesInteraction[k]);
-            }
             if (M.handleInteractionCollision(M.player,M.tilesInteraction[k])){
                 M.tile_selected = M.tilesInteraction[k];
                 if (M.space){
@@ -340,12 +337,26 @@ var M = {
                     M.tile_selected.interaction();
                 }
             }
+            if(M.tilesInteraction[k].haveCollision === true && M.handleCollision(M.player, M.tilesInteraction[k]) !== false) {
+                return true;
+            }
         }
+    },
+
+    spawnPnj() {
+
+    },
+
+    tryToGeneratePnj() {
+
     },
 
     update() {
         // Player
         M.updatePlayerPosition();
         M.playerCollision();
+
+        // PNJ
+        M.tryToGeneratePnj();
     }
 };
