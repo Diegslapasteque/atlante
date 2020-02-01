@@ -24,7 +24,7 @@ class Asset {
         }
 
         this._frameIndex = 0;
-        this._frameSpeed = 0.25;
+        this._frameSpeed = 0.125;
     }
 
     get x() {
@@ -194,5 +194,23 @@ class Player extends MoveAsset {
 
     set look(value) {
         this._look = value;
+    }
+
+    move(moveX, moveY) {
+        this.x += moveX*this.speed;
+        this.y += moveY*this.speed;
+
+        this.xColli = this.x;
+        this.yColli = this.y;
+
+        if (moveX!==0 || moveY!==0) {
+            this.frameIndex += this.frameSpeed;
+            if (this.frameIndex >= this.sprites[this.looks.LOOK_DOWN].length) {
+                this.frameIndex = 0;
+            }
+        }
+        else {
+            this.frameIndex = 0;
+        }
     }
 }

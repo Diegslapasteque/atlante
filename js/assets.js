@@ -109,20 +109,32 @@ const ASSETS = {
     },
 
     player: {
-        width: 64,
-        height: 64,
+        width: 70,
+        height: 70,
         sprites: {
             up: [
-                'assets/player/up/1.svg'
+                'assets/player/up/1.png',
+                'assets/player/up/2.png',
+                'assets/player/up/3.png',
+                'assets/player/up/4.png'
             ],
             down: [
-                'assets/player/down/1.svg'
+                'assets/player/down/1.png',
+                'assets/player/down/2.png',
+                'assets/player/down/3.png',
+                'assets/player/down/4.png'
             ],
             left: [
-                'assets/player/left/1.svg'
+                'assets/player/left/1.png',
+                'assets/player/left/2.png',
+                'assets/player/left/3.png',
+                'assets/player/left/4.png'
             ],
             right: [
-                'assets/player/right/1.svg'
+                'assets/player/right/1.png',
+                'assets/player/right/2.png',
+                'assets/player/right/3.png',
+                'assets/player/right/4.png'
             ]
         }
     },

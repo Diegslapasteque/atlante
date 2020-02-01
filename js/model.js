@@ -1,7 +1,7 @@
 var M = {
 // Properties
     // Configuration
-    FPS: 30,
+    FPS: 60,
     frameDuration: null, // milliseconds
     gameAnimationFrame: null,
     now: null,
