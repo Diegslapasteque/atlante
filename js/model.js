@@ -15,7 +15,6 @@ var M = {
 
     // Game States
     gameState: 0,
-    gameTime : 0,
     INIT: 0,
     LOADING: 1,
     MENU: 2,

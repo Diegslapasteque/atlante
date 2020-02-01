@@ -6,6 +6,7 @@ var V = {
 
 // Methods
     init() {
+        V.initTimer();
         V.canvas = document.querySelector('#game');
         V.context = V.canvas.getContext('2d');
 
@@ -13,6 +14,12 @@ var V = {
         V.canvas.height = C.getGameSize().HEIGHT;
 
         V.context.imageSmoothingEnabled = false;
+    },
+
+    initTimer(){
+        document.getElementById('timer').innerHTML =
+            3 + ":" + 01;
+        V.startTimer();
     },
 
     bindEvents() {
@@ -64,7 +71,6 @@ var V = {
         document.querySelector("#quests").innerHTML = "";
         stats.classList.add('active');
         Object.entries(pnjs.Capricol).forEach(pnj => {
-            console.log(pnj)
             var quest = document.createElement('li');
             if(pnj[1].actualQuests.isQuestAccomplished){
                 quest.style.color = "green";
@@ -72,13 +78,37 @@ var V = {
                 quest.style.color = "red";
             }
             quest.innerText = pnj[1].actualQuests.title;
-            console.log(quest);
             document.querySelector("#quests").appendChild(quest)
         });
         document.querySelector('#next-day').addEventListener('click',function(event){
             stats.classList.remove('active');
+            V.initTimer();
             C.resetGameLoop();
         })
+    },
+
+
+    startTimer() {
+        var presentTime = document.getElementById('timer').innerHTML;
+        var timeArray = presentTime.split(/[:]+/);
+        var m = timeArray[0];
+        var s = V.checkSecond((timeArray[1] - 1));
+        if(s==59){m=m-1}
+        if(m<0){
+            V.renderEndOfTHeDay(M.pnjs);
+        }else{
+            document.getElementById('timer').innerHTML =
+                m + ":" + s;
+            setTimeout(V.startTimer, 1000);
+        }
+
+
+    },
+
+     checkSecond(sec) {
+        if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+        if (sec < 0) {sec = "59"};
+        return sec;
     },
 
 

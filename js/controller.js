@@ -1,6 +1,7 @@
 var C = {
 // Properties
     previousDelta: 0,
+    TIME_BEFORE_END_OF_DAY : 50,
 
 
 // Methods
@@ -39,8 +40,6 @@ var C = {
             case M.PLAYING:
                 M.update();
                 C.render();
-                if(M.gameTime > 50){M.gameState = M.OVER}
-                else{M.gameTime+=1;}
                 break;
 
             case M.OVER:
@@ -120,4 +119,5 @@ var C = {
             HEIGHT: M.GAME_HEIGHT
         };
     },
+
 };

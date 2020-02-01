@@ -24,7 +24,7 @@
     display: flex !important;
 }
 
-p{
+#end-of-the-day p{
     width : 80%;
     margin:  5% auto;
     color : white;
@@ -37,6 +37,23 @@ ul{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+#timer-container{
+    display: block;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+#timer{
+    display: block;
+    color : white;
+    font-size: 28px;
+    margin: 1% auto;
+    width : 900px;
+    color: white;
 }
 
 
