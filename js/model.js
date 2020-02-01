@@ -15,6 +15,7 @@ var M = {
 
     // Game States
     gameState: 0,
+    gameTime : 0,
     INIT: 0,
     LOADING: 1,
     MENU: 2,
@@ -54,6 +55,7 @@ var M = {
     questObject:null,
     quests:null,
     pnjs: null,
+    endDay : true,
 
     // Objects base properties
     // Valeurs de base

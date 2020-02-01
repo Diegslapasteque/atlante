@@ -8,6 +8,12 @@ var C = {
         C.gameLoop();
     },
 
+    resetGameLoop() {
+        M.gameState = M.PLAYING;
+        M.gameTime =0;
+        C.gameLoop();
+    },
+
     gameLoop(currentDelta) {
         // Manage the game animation frame
         M.gameAnimationFrame = window.requestAnimationFrame(C.gameLoop);
@@ -33,10 +39,12 @@ var C = {
             case M.PLAYING:
                 M.update();
                 C.render();
+                if(M.gameTime > 50){M.gameState = M.OVER}
+                else{M.gameTime+=1;}
                 break;
 
             case M.OVER:
-                alert('La partie est terminée');
+                V.renderEndOfTHeDay(M.pnjs);
                 cancelAnimationFrame(M.gameAnimationFrame);
                 break;
         }
@@ -111,5 +119,5 @@ var C = {
             WIDTH: M.GAME_WIDTH,
             HEIGHT: M.GAME_HEIGHT
         };
-    }
+    },
 };

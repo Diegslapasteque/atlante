@@ -59,7 +59,27 @@ var V = {
         V.context.fillRect(0, 0, V.canvas.width, V.canvas.height);
     },
 
-    recapWorkOfTheDay(pnjs) {
-        console.log(pnjs)
-    }
+    renderEndOfTHeDay(pnjs) {
+        var stats = document.querySelector('#end-of-the-day');
+        document.querySelector("#quests").innerHTML = "";
+        stats.classList.add('active');
+        Object.entries(pnjs.Capricol).forEach(pnj => {
+            console.log(pnj)
+            var quest = document.createElement('li');
+            if(pnj[1].actualQuests.isQuestAccomplished){
+                quest.style.color = "green";
+            }else{
+                quest.style.color = "red";
+            }
+            quest.innerText = pnj[1].actualQuests.title;
+            console.log(quest);
+            document.querySelector("#quests").appendChild(quest)
+        });
+        document.querySelector('#next-day').addEventListener('click',function(event){
+            stats.classList.remove('active');
+            C.resetGameLoop();
+        })
+    },
+
+
 };
