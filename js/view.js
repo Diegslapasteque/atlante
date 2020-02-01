@@ -52,7 +52,7 @@ var V = {
     },
 
     drawRect(obj) {
-        V.context.fillStyle = "red";
+        V.context.fillStyle = "#130d08";
         V.context.fillRect(
             obj.x,
             obj.y,
@@ -67,7 +67,7 @@ var V = {
     },
 
     drawBackground() {
-        V.context.fillStyle = "blue";
+        V.context.fillStyle = "#232323";
         V.context.fillRect(0, 0, V.canvas.width, V.canvas.height);
     },
 

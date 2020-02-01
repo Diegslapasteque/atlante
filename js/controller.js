@@ -59,16 +59,16 @@ var C = {
         // Rendu de l'arrière-plan
         V.drawBackground();
 
-        M.tiles.forEach(V.drawObject);
-
-        // Rendu du joueur
-        V.drawAnimatedObject(M.player);
-
         // Rendu des tiles d'interaction
         M.tilesInteraction.forEach(V.drawObject);
         if (M.tile_selected != null){
             V.drawSelectedTile(M.tile_selected);
         }
+
+        M.tiles.forEach(V.drawObject);
+
+        // Rendu du joueur
+        V.drawAnimatedObject(M.player);
     },
 
     calcObjectsToLoad() {

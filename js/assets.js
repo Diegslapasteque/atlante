@@ -14,7 +14,7 @@ const ASSETS = {
     1: {
         haveCollision: true,
         sprites: [
-            'assets/tiles/MurDroite.png'
+            'assets/tiles/mur.png'
         ]
     },
     2: {
@@ -74,7 +74,7 @@ const ASSETS = {
     11: {
         haveCollision: false,
         sprites: [
-            'assets/tiles/PiedPlanche.png'
+            'assets/tiles/piedTable.png'
         ]
     },
     12: {
@@ -97,11 +97,9 @@ const ASSETS = {
     },
     15: {
         haveCollision: true,
-
         interaction : preparePotion,
-
         sprites: [
-            'assets/tiles/PlancheCauldron.png'
+            'assets/tiles/cauldron.png'
         ]
     },
     16: {
@@ -125,28 +123,28 @@ const ASSETS = {
         height: 100,
         sprites: {
             up: [
+                'assets/player/up/2.png',
                 'assets/player/up/1.png',
                 'assets/player/up/2.png',
-                'assets/player/up/3.png',
-                'assets/player/up/2.png'
+                'assets/player/up/3.png'
             ],
             down: [
+                'assets/player/down/2.png',
                 'assets/player/down/1.png',
                 'assets/player/down/2.png',
-                'assets/player/down/3.png',
-                'assets/player/down/2.png'
+                'assets/player/down/3.png'
             ],
             left: [
+                'assets/player/left/2.png',
                 'assets/player/left/1.png',
                 'assets/player/left/2.png',
-                'assets/player/left/3.png',
-                'assets/player/left/2.png'
+                'assets/player/left/3.png'
             ],
             right: [
+                'assets/player/right/2.png',
                 'assets/player/right/1.png',
                 'assets/player/right/2.png',
-                'assets/player/right/3.png',
-                'assets/player/right/2.png'
+                'assets/player/right/3.png'
             ]
         }
     },
