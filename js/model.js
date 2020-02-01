@@ -2,8 +2,11 @@ var M = {
 // Properties
     // Configuration
     FPS: 60,
+    frameDuration: null, // milliseconds
     gameAnimationFrame: null,
-    GAME_WIDTH: window.innerWidth-3,
+    now: null,
+    then: null,
+    GAME_WIDTH: window.innerHeight-3,
     GAME_HEIGHT: window.innerHeight-3,
 
     // Loading
@@ -34,6 +37,8 @@ var M = {
     // Controls
     left: false,
     right: false,
+    up: false,
+    down: false,
 
     // Game objects
     player: null,
@@ -51,7 +56,7 @@ var M = {
     PLAYER_Y: null,
     PLAYER_WIDTH: null,
     PLAYER_HEIGHT: null,
-    PLAYER_SPEED: 10,
+    PLAYER_SPEED: 3,
 
 
 // Methods
@@ -72,16 +77,37 @@ var M = {
             M.PLAYER_Y,
             M.PLAYER_WIDTH,
             M.PLAYER_HEIGHT,
-            M.PLAYER_SPEED
+            M.PLAYER_SPEED,
+            M.PLAYER_X,
+            M.PLAYER_Y,
+            M.PLAYER_WIDTH,
+            M.PLAYER_HEIGHT,
         );
     },
 
     initValues() {
         // player
-        M.PLAYER_WIDTH = ASSETS[M.PLAYER_TYPE].sWidth*M.ASSET_SIZE_MULTIPLE;
-        M.PLAYER_HEIGHT = ASSETS[M.PLAYER_TYPE].sHeight*M.ASSET_SIZE_MULTIPLE;
-        M.PLAYER_X = M.GAME_WIDTH/2 - (ASSETS[M.PLAYER_TYPE].sWidth*M.ASSET_SIZE_MULTIPLE) / 2;
+        M.PLAYER_WIDTH = ASSETS[M.PLAYER_TYPE].width*M.ASSET_SIZE_MULTIPLE;
+        M.PLAYER_HEIGHT = ASSETS[M.PLAYER_TYPE].height*M.ASSET_SIZE_MULTIPLE;
+        M.PLAYER_X = M.GAME_WIDTH/2 - M.PLAYER_WIDTH / 2;
         M.PLAYER_Y = M.GAME_HEIGHT - M.GAME_HEIGHT*0.1;
+    },
+
+    canPlayGameloop: function() {
+        if(M.frameDuration === null) {
+            M.frameDuration = 1000/M.FPS;
+            M.then = Date.now();
+        }
+
+        M.now = Date.now();
+        let delta = M.now - M.then;
+
+        if(delta > M.frameDuration) {
+            M.then = M.now - (delta % M.frameDuration);
+            return true;
+        }
+
+        return false;
     },
 
     initSounds() {
@@ -112,12 +138,12 @@ var M = {
         let dw, dh, vx, vy;
 
         // Calculate the distance between the 2 objects
-        vx = (staticObj.x+staticObj.width/2)-(movingObj.x+movingObj.width/2);
-        vy = (staticObj.y+staticObj.height/2)-(movingObj.y+movingObj.height/2);
+        vx = (staticObj.xColli+staticObj.width/2)-(movingObj.xColli+movingObj.widthColli/2);
+        vy = (staticObj.yColli+staticObj.heightColli/2)-(movingObj.yColli+movingObj.heightColli/2);
 
         // Minimal distance before the collision
-        dw = staticObj.width/2 + movingObj.width/2;
-        dh = staticObj.height/2 + movingObj.height/2;
+        dw = staticObj.widthColli/2 + movingObj.widthColli/2;
+        dh = staticObj.heightColli/2 + movingObj.heightColli/2;
 
         if (Math.abs(vx) < dw) {
             if(Math.abs(vy) < dh){
@@ -137,7 +163,46 @@ var M = {
         return false;
     },
 
+    updatePlayerPosition() {
+        // Direction
+        var dirX = 0;
+        var dirY = 0;
+
+        // Up
+        if(M.up && !M.down){
+            dirY = -1;
+            M.player.look = M.player.looks.LOOK_UP;
+        }
+        // Down
+        if(!M.up && M.down){
+            dirY = 1;
+            M.player.look = M.player.looks.LOOK_DOWN;
+        }
+        // Left
+        if(M.left && !M.right){
+            dirX = -1;
+            M.player.look = M.player.looks.LOOK_LEFT;
+        }
+        // Right
+        if(!M.left && M.right){
+            dirX = 1;
+            M.player.look = M.player.looks.LOOK_RIGHT;
+        }
+
+        // Pas de déplacement axe horizontal
+        if(!M.left && !M.right){
+            dirX = 0;
+        }
+        // Pas de déplacement axe vertical
+        if(!M.up && !M.down){
+            dirY = 0;
+        }
+
+        // On applique le déplacement au player
+        M.player.move(dirX, dirY);
+    },
+
     update() {
-        // TODO
+        M.updatePlayerPosition();
     }
 };

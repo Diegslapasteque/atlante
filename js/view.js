@@ -2,8 +2,6 @@ var V = {
 // Properties
     canvas: null,
     context: null,
-    assets: null,
-    ASSETS_SOURCE: 'assets/assets.png',
 
 
 // Methods
@@ -15,12 +13,6 @@ var V = {
         V.canvas.height = C.getGameSize().HEIGHT;
 
         V.context.imageSmoothingEnabled = false;
-
-        V.assets = new Image();
-        V.assets.onload = function() {
-            C.objectLoaded();
-        };
-        V.assets.src = V.ASSETS_SOURCE;
     },
 
     bindEvents() {
@@ -32,17 +24,24 @@ var V = {
         V.context.clearRect(0, 0, V.canvas.width, V.canvas.height);
     },
 
-    drawImage(obj) {
+    drawObject(obj) {
         V.context.drawImage(
-            V.assets,
-            obj.sX,
-            obj.sY,
-            obj.sWidth,
-            obj.sHeight,
+            obj.sprites[Math.round(obj.frameIndex)],
             obj.x,
             obj.y,
             obj.width,
             obj.height
         );
     },
+
+    drawAnimatedObject(obj) {
+        console.log(obj);
+        V.context.drawImage(
+            obj.sprites[obj.look][Math.round(obj.frameIndex)],
+            obj.x,
+            obj.y,
+            obj.width,
+            obj.height
+        );
+    }
 };

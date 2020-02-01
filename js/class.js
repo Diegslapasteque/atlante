@@ -4,10 +4,18 @@ class Asset {
         this._y = Math.round(y);
         this._width = width;
         this._height = height;
-        this._sX = ASSETS[type].sX;
-        this._sY = ASSETS[type].sY;
-        this._sWidth = ASSETS[type].sWidth;
-        this._sHeight = ASSETS[type].sHeight;
+
+        if(Array.isArray(ASSETS[type].sprites)) {
+            this._sprites = [];
+            ASSETS[type].sprites.forEach((sprite) => {
+                let image = new Image();
+                image.src = sprite;
+                this._sprites.push(image);
+            });
+        }
+
+        this._frameIndex = 0;
+        this._frameSpeed = 0.25;
     }
 
     get x() {
@@ -73,11 +81,43 @@ class Asset {
     set sHeight(value) {
         this._sHeight = value;
     }
+
+    get frameIndex() {
+        return this._frameIndex;
+    }
+
+    set frameIndex(value) {
+        this._frameIndex = value;
+    }
+
+    get frameSpeed() {
+        return this._frameSpeed;
+    }
+
+    set frameSpeed(value) {
+        this._frameSpeed = value;
+    }
+
+    get sprites() {
+        return this._sprites;
+    }
+
+    set sprites(value) {
+        this._sprites = value;
+    }
+
+    updateAnimation() {
+        this.frameIndex += this.frameSpeed;
+        if(this.frameIndex >= this.sprites.length) {
+            this.frameIndex = 0;
+        }
+    }
 }
 
 class MoveAsset extends Asset {
     constructor(type, x, y, width, height, speed) {
         super(type, x, y, width, height);
+
         this._speed = speed;
     }
 
@@ -96,7 +136,76 @@ class MoveAsset extends Asset {
 }
 
 class Player extends MoveAsset {
-    constructor(type, x, y, width, height, speed) {
+    constructor(type, x, y, width, height, speed, xColli, yColli, widthColli, heightColli) {
         super(type, x, y, width, height, speed);
+
+        this._xColli = xColli;
+        this._yColli = yColli;
+        this._widthColli = widthColli;
+        this._heightColli = heightColli;
+
+        this._sprites = {};
+        for (let [look, sprites] of Object.entries(ASSETS[type].sprites)) {
+            let images = [];
+            sprites = sprites.forEach( (sprite) => {
+                let image = new Image();
+                image.src = sprite;
+                images.push(image);
+            });
+            this._sprites[look] = images;
+        }
+
+        this._looks = {
+            LOOK_DOWN: "down",
+            LOOK_UP: "up",
+            LOOK_LEFT: "left",
+            LOOK_RIGHT: "right"
+        };
+
+        this._look = this._looks.LOOK_DOWN;
+    }
+
+    get frameIndex() {
+        return this._frameIndex;
+    }
+
+    set frameIndex(value) {
+        this._frameIndex = value;
+    }
+
+    get frameSpeed() {
+        return this._frameSpeed;
+    }
+
+    set frameSpeed(value) {
+        this._frameSpeed = value;
+    }
+
+    get xColli() {
+        return this._xColli;
+    }
+
+    get yColli() {
+        return this._yColli;
+    }
+
+    get widthColli() {
+        return this._widthColli;
+    }
+
+    get heightColli() {
+        return this._heightColli;
+    }
+
+    get looks() {
+        return this._looks;
+    }
+
+    get look() {
+        return this._look;
+    }
+
+    set look(value) {
+        this._look = value;
     }
 }
