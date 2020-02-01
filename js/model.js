@@ -1,7 +1,7 @@
 var M = {
 // Properties
     // Configuration
-    FPS: 30,
+    FPS: 60,
     frameDuration: null, // milliseconds
     gameAnimationFrame: null,
     now: null,
@@ -45,12 +45,15 @@ var M = {
     right: false,
     up: false,
     down: false,
+    space: false,
 
     // Game objects
     player: null,
     background: null,
     tiles: [],
+    tilesInteraction: [],
     pnj: [],
+    tile_selected: null,
 
     // Objects base properties
     // Valeurs de base
@@ -97,14 +100,18 @@ var M = {
     },
 
     generateMap() {
-        M.mapTileSize = Math.min( Math.round(M.GAME_HEIGHT / M.map.length), Math.round(M.GAME_WIDTH / M.map[0].length) ) - 1;
-        M.mapWidth = M.map[0].length * M.mapTileSize;
-        M.mapHeight = M.map.length * M.mapTileSize;
+        M.mapTileSize = 64;
+        M.GAME_WIDTH = M.map[0].length * M.mapTileSize;
+        M.GAME_HEIGHT = M.map.length * M.mapTileSize;
 
         for (let row=0; row<M.map.length; row++) {
             for (let col=0; col<M.map[0].length; col++) {
-                let tile = new Asset(M.map[row][col], col*M.mapTileSize, row*M.mapTileSize, M.mapTileSize, M.mapTileSize);
-                M.tiles.push(tile);
+                if(ASSETS[M.map[row][col]].interaction) {
+                    M.tilesInteraction.push(new AssetInteraction(M.map[row][col], col * M.mapTileSize, row * M.mapTileSize, M.mapTileSize, M.mapTileSize));
+                }
+                else {
+                    M.tiles.push(new Asset(M.map[row][col], col*M.mapTileSize, row*M.mapTileSize, M.mapTileSize, M.mapTileSize));
+                }
             }
         }
     },
@@ -158,16 +165,16 @@ var M = {
         }
     },
 
-    handleCollision: function(staticObj, movingObj) {
+    handleCollision: function(movingObj, staticObj) {
         let dw, dh, vx, vy;
 
         // Calculate the distance between the 2 objects
-        vx = (staticObj.xColli+staticObj.widthColli/2)-(movingObj.xColli+movingObj.widthColli/2);
-        vy = (staticObj.yColli+staticObj.heightColli/2)-(movingObj.yColli+movingObj.heightColli/2);
+        vx = (movingObj.xColli+movingObj.widthColli/2)-(staticObj.xColli+staticObj.widthColli/2);
+        vy = (movingObj.yColli+movingObj.heightColli/2)-(staticObj.yColli+staticObj.heightColli/2);
 
         // Minimal distance before the collision
-        dw = staticObj.widthColli/2 + movingObj.widthColli/2;
-        dh = staticObj.heightColli/2 + movingObj.heightColli/2;
+        dw = movingObj.widthColli/2 + staticObj.widthColli/2;
+        dh = movingObj.heightColli/2 + staticObj.heightColli/2;
 
         if (Math.abs(vx) < dw) {
             if(Math.abs(vy) < dh){
@@ -177,18 +184,18 @@ var M = {
 
                 if (overlapX >= overlapY) {
                     if (vy > 0) {
-                        staticObj.y = staticObj.y + overlapY;
+                        movingObj.y = movingObj.y + overlapY;
                         return M.COLLISION_TOP;
                     } else {
-                        staticObj.y = staticObj.y - overlapY;
+                        movingObj.y = movingObj.y - overlapY;
                         return M.COLLISION_BOTTOM;
                     }
                 } else {
                     if (vx > 0) {
-                        staticObj.x = staticObj.x + overlapX;
+                        movingObj.x = movingObj.x + overlapX;
                         return M.COLLISION_LEFT;
                     } else {
-                        staticObj.x = staticObj.x - overlapX;
+                        movingObj.x = movingObj.x - overlapX;
                         return M.COLLISION_RIGHT;
                     }
                 }
@@ -196,6 +203,17 @@ var M = {
         }
 
         return false;
+    },
+
+    handleInteractionCollision(sprite, tile) {
+        for(let i=0; i<tile.points.length; i++) {
+            if ( (sprite.xColli + sprite.widthColli) > tile.points[i].x &&
+                tile.points[i].x > sprite.xColli &&
+                (sprite.yColli + sprite.heightColli) > tile.points[i].y &&
+                tile.points[i].y > sprite.yColli){
+                return true;
+            }
+        }
     },
 
     updatePlayerPosition() {
@@ -229,12 +247,24 @@ var M = {
         M.player.move(dirX, dirY);
     },
 
-    isPlayerCollision() {
+    playerCollision() {
         for (let i=0; i<M.tiles.length; i++) {
-
-
             if(M.tiles[i].haveCollision === true && M.handleCollision(M.player, M.tiles[i]) !== false) {
                 return true;
+            }
+        }
+
+        M.tile_selected = null;
+        for (let k=0; k<M.tilesInteraction.length; k++){
+            if(M.tilesInteraction[k].haveCollision === true) {
+                M.handleCollision(M.player, M.tilesInteraction[k]);
+            }
+            if (M.handleInteractionCollision(M.player,M.tilesInteraction[k])){
+                M.tile_selected = M.tilesInteraction[k];
+                if (M.space){
+                    M.space = false;
+                    M.tile_selected.interaction();
+                }
             }
         }
     },
@@ -242,6 +272,6 @@ var M = {
     update() {
         // Player
         M.updatePlayerPosition();
-        M.isPlayerCollision();
+        M.playerCollision();
     }
 };
