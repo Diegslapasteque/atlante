@@ -50,12 +50,12 @@ var C = {
         V.clearView();
 
         // Rendu de l'arrière-plan
-        V.drawObject(M.background);
+        V.drawBackground();
+
+        M.tiles.forEach(V.drawObject);
 
         // Rendu du joueur
         V.drawAnimatedObject(M.player);
-
-        // M.objects.forEach(V.drawImage);
     },
 
     calcObjectsToLoad() {

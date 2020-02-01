@@ -1,7 +1,7 @@
 var M = {
 // Properties
     // Configuration
-    FPS: 60,
+    FPS: 30,
     frameDuration: null, // milliseconds
     gameAnimationFrame: null,
     now: null,
@@ -28,6 +28,12 @@ var M = {
         // playerJump: ['sounds/playerJump.wav', 'sounds/playerJump.mp3']
     },
 
+    // Carte
+    map: MAPS[0],
+    mapWidth: 0,
+    mapHeight: 0,
+    mapTileSize: 0,
+
     // Collisions side
     COLLISION_TOP: 0,
     COLLISION_BOTTOM: 1,
@@ -42,8 +48,9 @@ var M = {
 
     // Game objects
     player: null,
-    // background: null,
-    // objects: [],
+    background: null,
+    tiles: [],
+    pnj: [],
 
     // Objects base properties
     // Valeurs de base
@@ -78,11 +85,28 @@ var M = {
             M.PLAYER_WIDTH,
             M.PLAYER_HEIGHT,
             M.PLAYER_SPEED,
-            M.PLAYER_X,
-            M.PLAYER_Y,
-            M.PLAYER_WIDTH,
-            M.PLAYER_HEIGHT,
         );
+
+        M.generateMap();
+
+        M.generatePnjs();
+    },
+
+    generatePnjs() {
+
+    },
+
+    generateMap() {
+        M.mapTileSize = Math.min( Math.round(M.GAME_HEIGHT / M.map.length), Math.round(M.GAME_WIDTH / M.map[0].length) ) - 1;
+        M.mapWidth = M.map[0].length * M.mapTileSize;
+        M.mapHeight = M.map.length * M.mapTileSize;
+
+        for (let row=0; row<M.map.length; row++) {
+            for (let col=0; col<M.map[0].length; col++) {
+                let tile = new Asset(M.map[row][col], col*M.mapTileSize, row*M.mapTileSize, M.mapTileSize, M.mapTileSize);
+                M.tiles.push(tile);
+            }
+        }
     },
 
     initValues() {
@@ -90,7 +114,7 @@ var M = {
         M.PLAYER_WIDTH = ASSETS[M.PLAYER_TYPE].width*M.ASSET_SIZE_MULTIPLE;
         M.PLAYER_HEIGHT = ASSETS[M.PLAYER_TYPE].height*M.ASSET_SIZE_MULTIPLE;
         M.PLAYER_X = M.GAME_WIDTH/2 - M.PLAYER_WIDTH / 2;
-        M.PLAYER_Y = M.GAME_HEIGHT - M.GAME_HEIGHT*0.1;
+        M.PLAYER_Y = M.GAME_HEIGHT/2;
     },
 
     canPlayGameloop: function() {
@@ -134,11 +158,11 @@ var M = {
         }
     },
 
-    getCollisionSide: function(staticObj, movingObj) {
+    handleCollision: function(staticObj, movingObj) {
         let dw, dh, vx, vy;
 
         // Calculate the distance between the 2 objects
-        vx = (staticObj.xColli+staticObj.width/2)-(movingObj.xColli+movingObj.widthColli/2);
+        vx = (staticObj.xColli+staticObj.widthColli/2)-(movingObj.xColli+movingObj.widthColli/2);
         vy = (staticObj.yColli+staticObj.heightColli/2)-(movingObj.yColli+movingObj.heightColli/2);
 
         // Minimal distance before the collision
@@ -152,10 +176,21 @@ var M = {
                 let overlapY = dh - Math.abs(vy);
 
                 if (overlapX >= overlapY) {
-                    return ((vy>0) ? M.COLLISION_TOP : M.COLLISION_BOTTOM);
-                }
-                else {
-                    return ((vx>0) ? M.COLLISION_LEFT : M.COLLISION_RIGHT);
+                    if (vy > 0) {
+                        staticObj.y = staticObj.y + overlapY;
+                        return M.COLLISION_TOP;
+                    } else {
+                        staticObj.y = staticObj.y - overlapY;
+                        return M.COLLISION_BOTTOM;
+                    }
+                } else {
+                    if (vx > 0) {
+                        staticObj.x = staticObj.x + overlapX;
+                        return M.COLLISION_LEFT;
+                    } else {
+                        staticObj.x = staticObj.x - overlapX;
+                        return M.COLLISION_RIGHT;
+                    }
                 }
             }
         }
@@ -174,35 +209,39 @@ var M = {
             M.player.look = M.player.looks.LOOK_UP;
         }
         // Down
-        if(!M.up && M.down){
+        else if(!M.up && M.down){
             dirY = 1;
             M.player.look = M.player.looks.LOOK_DOWN;
         }
         // Left
-        if(M.left && !M.right){
+        else if(M.left && !M.right){
             dirX = -1;
             M.player.look = M.player.looks.LOOK_LEFT;
         }
         // Right
-        if(!M.left && M.right){
+        else if(!M.left && M.right){
             dirX = 1;
             M.player.look = M.player.looks.LOOK_RIGHT;
         }
 
-        // Pas de déplacement axe horizontal
-        if(!M.left && !M.right){
-            dirX = 0;
-        }
-        // Pas de déplacement axe vertical
-        if(!M.up && !M.down){
-            dirY = 0;
-        }
 
         // On applique le déplacement au player
         M.player.move(dirX, dirY);
     },
 
+    isPlayerCollision() {
+        for (let i=0; i<M.tiles.length; i++) {
+
+
+            if(M.tiles[i].haveCollision === true && M.handleCollision(M.player, M.tiles[i]) !== false) {
+                return true;
+            }
+        }
+    },
+
     update() {
+        // Player
         M.updatePlayerPosition();
+        M.isPlayerCollision();
     }
 };

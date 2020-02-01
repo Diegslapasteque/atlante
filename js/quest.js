@@ -34,7 +34,7 @@ class Quest  {
 
 }
 
-const ALL_QUESTS = {
+var ALL_QUESTS = {
     //IMPORTANT QUESTS
     "VilMalendrin" : new Quest('Des projets de richesses','Bonjour, mage. Je suis à la recherche d\'une magie pour soulager les problèmes de sommeil sensible.',200,ALL_PNJ.Capricol.Fastpaul,ALL_QUEST_OBJECT.Parchemins.Sommeil,-15),
     "VilMalendrin_2" : new Quest('Des projets de vengeance','Bon alors !!! je sais que je ne suis pas apprécié dans ce village mais ce n\'est pas une raison pour fournir des sort qui me nuisent. Vous avez intéret à me donner Un parchemin de persuasion pour que je récupère ce que ce voleur m\'a dérobé !!',500,ALL_PNJ.Capricol.Rocwald,ALL_QUEST_OBJECT.Potions.Soin,-30),

@@ -35,7 +35,6 @@ var V = {
     },
 
     drawAnimatedObject(obj) {
-        console.log(obj);
         V.context.drawImage(
             obj.sprites[obj.look][Math.round(obj.frameIndex)],
             obj.x,
@@ -43,5 +42,20 @@ var V = {
             obj.width,
             obj.height
         );
+    },
+
+    drawRect(obj) {
+        V.context.fillStyle = "red";
+        V.context.fillRect(
+            obj.x,
+            obj.y,
+            obj.width,
+            obj.height
+        );
+    },
+
+    drawBackground() {
+        V.context.fillStyle = "blue";
+        V.context.fillRect(0, 0, V.canvas.width, V.canvas.height);
     }
 };

@@ -2,8 +2,13 @@ class Asset {
     constructor(type, x, y, width, height) {
         this._x = Math.round(x);
         this._y = Math.round(y);
-        this._width = width;
-        this._height = height;
+        this._width = Math.round(width);
+        this._height = Math.round(height);
+
+        this._xColli = Math.round(x);
+        this._yColli = Math.round(y);
+        this._widthColli = Math.round(width);
+        this._heightColli = Math.round(height);
 
         if(Array.isArray(ASSETS[type].sprites)) {
             this._sprites = [];
@@ -12,6 +17,10 @@ class Asset {
                 image.src = sprite;
                 this._sprites.push(image);
             });
+        }
+
+        if(typeof ASSETS[type].haveCollision !== "undefined") {
+            this._haveCollision = ASSETS[type].haveCollision;
         }
 
         this._frameIndex = 0;
@@ -50,36 +59,28 @@ class Asset {
         this._height = value;
     }
 
-    get sX() {
-        return this._sX;
+    get xColli() {
+        return this._xColli;
     }
 
-    set sX(value) {
-        this._sX = value;
+    get yColli() {
+        return this._yColli;
     }
 
-    get sY() {
-        return this._sY;
+    get widthColli() {
+        return this._widthColli;
     }
 
-    set sY(value) {
-        this._sY = value;
+    get heightColli() {
+        return this._heightColli;
     }
 
-    get sWidth() {
-        return this._sWidth;
+    set xColli(value) {
+        this._xColli = value;
     }
 
-    set sWidth(value) {
-        this._sWidth = value;
-    }
-
-    get sHeight() {
-        return this._sHeight;
-    }
-
-    set sHeight(value) {
-        this._sHeight = value;
+    set yColli(value) {
+        this._yColli = value;
     }
 
     get frameIndex() {
@@ -104,6 +105,10 @@ class Asset {
 
     set sprites(value) {
         this._sprites = value;
+    }
+
+    get haveCollision() {
+        return this._haveCollision;
     }
 
     updateAnimation() {
@@ -132,17 +137,15 @@ class MoveAsset extends Asset {
     move(moveX, moveY) {
         this.x += moveX*this.speed;
         this.y += moveY*this.speed;
+
+        this.xColli = this.x;
+        this.yColli = this.y;
     }
 }
 
 class Player extends MoveAsset {
-    constructor(type, x, y, width, height, speed, xColli, yColli, widthColli, heightColli) {
+    constructor(type, x, y, width, height, speed) {
         super(type, x, y, width, height, speed);
-
-        this._xColli = xColli;
-        this._yColli = yColli;
-        this._widthColli = widthColli;
-        this._heightColli = heightColli;
 
         this._sprites = {};
         for (let [look, sprites] of Object.entries(ASSETS[type].sprites)) {
@@ -179,22 +182,6 @@ class Player extends MoveAsset {
 
     set frameSpeed(value) {
         this._frameSpeed = value;
-    }
-
-    get xColli() {
-        return this._xColli;
-    }
-
-    get yColli() {
-        return this._yColli;
-    }
-
-    get widthColli() {
-        return this._widthColli;
-    }
-
-    get heightColli() {
-        return this._heightColli;
     }
 
     get looks() {

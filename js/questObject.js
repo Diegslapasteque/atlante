@@ -19,7 +19,7 @@ class QuestObject{
     setEffect(newEffect){ this.effect = effect;}
 }
 
-const ALL_QUEST_OBJECT = {
+var ALL_QUEST_OBJECT = {
     "Potions" : {
         'Soin': new QuestObject('Potion de soin', 1, 'Une fiole vide, une herbe médicinale', 'Soigne d\'une blessure légère'),
         'Guerison': new QuestObject('Potion de guérison', 2, 'Une fiole vide, deux herbes médicinales , une racine de mandragore', 'Soigne d\'une maladie ou blessure grave'),

@@ -28,10 +28,10 @@ class Pnj extends MoveAsset {
     decreaseTimeToWait(){this.timeToWait -= DECREASE_TIME_TO_WAIT;}
 }
 
-const ALL_PNJ = {
+var ALL_PNJ = {
     "Capricol" : {
         //IMPORTANT PNJ
-        'Rocwald' : new Pnj('Rocwald','Voleur',[ALL_QUESTS.VilMalendrin,ALL_QUESTS.VilMalendrin_3],ALL_QUESTS.VilMalendrin,),
+        'Rocwald' : new Pnj('Rocwald','Voleur',[ALL_QUESTS.VilMalendrin,ALL_QUESTS.VilMalendrin_3],ALL_QUESTS.VilMalendrin),
         'Fastpaul' : new Pnj('Fastpaul','Noble',[ALL_QUESTS.Marchand,ALL_QUESTS.VilMalendrin_2],ALL_QUESTS.Marchand),
 
         //RANDOM PNJ
