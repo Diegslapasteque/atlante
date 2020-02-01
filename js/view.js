@@ -62,5 +62,9 @@ var V = {
     drawBackground() {
         V.context.fillStyle = "blue";
         V.context.fillRect(0, 0, V.canvas.width, V.canvas.height);
+    },
+
+    recapWorkOfTheDay(pnjs) {
+        console.log(pnjs)
     }
 };

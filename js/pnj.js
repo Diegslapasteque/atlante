@@ -1,14 +1,10 @@
-
-const TIME_TO_WAIT = 0;
-const DECREASE_TIME_TO_WAIT = 1;
-class Pnj extends MoveAsset {
+class Pnj {
     constructor(name,situation,quests,actualQuest){
-      super();
       this.name = name;
       this.situation = situation;
       this.quests = [];
       this.actualQuests = actualQuest;
-      this.timeToWait = TIME_TO_WAIT;
+      this.timeToWait = 0;
       this.questObject = null;
     }
     getName(){ return this.name;}
@@ -25,33 +21,5 @@ class Pnj extends MoveAsset {
 
     getTimeToWait(){ return this.timeToWait;}
     setTimeTOWait(newTimeToWait){this.timeToWait = newTimeToWait;}
-    decreaseTimeToWait(){this.timeToWait -= DECREASE_TIME_TO_WAIT;}
-}
-
-var ALL_PNJ = {
-    "Capricol" : {
-        //IMPORTANT PNJ
-        'Rocwald' : new Pnj('Rocwald','Voleur',[ALL_QUESTS.VilMalendrin,ALL_QUESTS.VilMalendrin_3],ALL_QUESTS.VilMalendrin),
-        'Fastpaul' : new Pnj('Fastpaul','Noble',[ALL_QUESTS.Marchand,ALL_QUESTS.VilMalendrin_2],ALL_QUESTS.Marchand),
-
-        //RANDOM PNJ
-        'Roywulf' : new Pnj('Roywulf','Voleur',null,ALL_QUESTS.VoleurAncien),
-        'Eallett' : new Pnj('Eallett','Paysanne',null,ALL_QUESTS.ProcheMalade),
-        'Roneal' : new Pnj('Roneal','Petite fille',null,ALL_QUESTS.Chien),
-        'Nasba' : new Pnj('Nasba','Chasseur',null,ALL_QUESTS.Chasseur),
-        'Evermit' : new Pnj('Evermit','Soldat',null,ALL_QUESTS.Combattant),
-        'Muelord' : new Pnj('Muelord','Soldat',null,ALL_QUESTS.Novice),
-        'Nadon' : new Pnj('Nadon','Soldat',null,ALL_QUESTS.CombattantPeuSoigneux),
-        'Elfvid' : new Pnj('Elfvid','Noble',null,ALL_QUESTS.NoblesseTriste),
-        'Venred' : new Pnj('Venred','Héros',null,ALL_QUESTS.Heros),
-        'Roe' : new Pnj('Roe','Veille dame',null,ALL_QUESTS.Sommeil),
-        'Retvise' : new Pnj('Retvise','Chevalier',null,ALL_QUESTS.ChevelierDeRose),
-        'Brandbard' : new Pnj('Brandbard','Soldat',null,ALL_QUESTS.SoldatSuicidaire),
-        'Rolla' : new Pnj('Rolla','Agriculteur',null,ALL_QUESTS.PaysanPeureux),
-    },
-    "Monnie" : {
-        //IMPORTANT PNJ
-
-        //RANDOM PNJ
-    },
+    decreaseTimeToWait(){this.timeToWait -= 1;}
 }
