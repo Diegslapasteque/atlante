@@ -54,8 +54,17 @@ var V = {
         );
     },
 
+    drawSelectedTile(obj){
+        V.context.fillStyle = "rgba(255, 255, 255, 0.2)";
+        V.context.fillRect(obj.x, obj.y, obj.width, obj.height);
+    },
+
     drawBackground() {
         V.context.fillStyle = "blue";
         V.context.fillRect(0, 0, V.canvas.width, V.canvas.height);
+    },
+
+    recapWorkOfTheDay(pnjs) {
+        console.log(pnjs)
     }
 };

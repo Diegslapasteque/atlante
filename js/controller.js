@@ -16,8 +16,8 @@ var C = {
 
         switch (M.gameState) {
             case M.INIT:
-                V.init();
                 M.init();
+                V.init();
                 C.calcObjectsToLoad();
                 V.bindEvents();
                 M.gameState = M.LOADING;
@@ -56,6 +56,12 @@ var C = {
 
         // Rendu du joueur
         V.drawAnimatedObject(M.player);
+
+        // Rendu des tiles d'interaction
+        M.tilesInteraction.forEach(V.drawObject);
+        if (M.tile_selected != null){
+            V.drawSelectedTile(M.tile_selected);
+        }
     },
 
     calcObjectsToLoad() {
@@ -85,6 +91,9 @@ var C = {
             case 'ArrowDown':
                 M.down = true;
                 break;
+            case ' ':
+                M.space = true;
+                break;
         }
     },
 
@@ -101,6 +110,9 @@ var C = {
                 break;
             case 'ArrowDown':
                 M.down = false;
+                break;
+            case ' ':
+                M.space = false;
                 break;
         }
     },

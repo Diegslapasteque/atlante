@@ -45,12 +45,18 @@ var M = {
     right: false,
     up: false,
     down: false,
+    space: false,
 
     // Game objects
     player: null,
     background: null,
     tiles: [],
+    tilesInteraction: [],
     pnj: [],
+    tile_selected: null,
+    questObject:null,
+    quests:null,
+    pnjs: null,
 
     // Objects base properties
     // Valeurs de base
@@ -97,14 +103,18 @@ var M = {
     },
 
     generateMap() {
-        M.mapTileSize = Math.min( Math.round(M.GAME_HEIGHT / M.map.length), Math.round(M.GAME_WIDTH / M.map[0].length) ) - 1;
-        M.mapWidth = M.map[0].length * M.mapTileSize;
-        M.mapHeight = M.map.length * M.mapTileSize;
+        M.mapTileSize = 64;
+        M.GAME_WIDTH = M.map[0].length * M.mapTileSize;
+        M.GAME_HEIGHT = M.map.length * M.mapTileSize;
 
         for (let row=0; row<M.map.length; row++) {
             for (let col=0; col<M.map[0].length; col++) {
-                let tile = new Asset(M.map[row][col], col*M.mapTileSize, row*M.mapTileSize, M.mapTileSize, M.mapTileSize);
-                M.tiles.push(tile);
+                if(ASSETS[M.map[row][col]].interaction) {
+                    M.tilesInteraction.push(new AssetInteraction(M.map[row][col], col * M.mapTileSize, row * M.mapTileSize, M.mapTileSize, M.mapTileSize));
+                }
+                else {
+                    M.tiles.push(new Asset(M.map[row][col], col*M.mapTileSize, row*M.mapTileSize, M.mapTileSize, M.mapTileSize));
+                }
             }
         }
     },
@@ -115,6 +125,77 @@ var M = {
         M.PLAYER_HEIGHT = ASSETS[M.PLAYER_TYPE].height*M.ASSET_SIZE_MULTIPLE;
         M.PLAYER_X = M.GAME_WIDTH/2 - M.PLAYER_WIDTH / 2;
         M.PLAYER_Y = M.GAME_HEIGHT/2;
+        M.questObject = {
+            "Potions" : {
+                'Soin': new QuestObject('Potion de soin', 1, 'Une fiole vide, une herbe médicinale', 'Soigne d\'une blessure légère'),
+                'Guerison': new QuestObject('Potion de guérison', 2, 'Une fiole vide, deux herbes médicinales , une racine de mandragore', 'Soigne d\'une maladie ou blessure grave'),
+                'Force': new QuestObject('Potion de froce', 3, 'Une fiole vide, deux racines de mandragore, une plume de,phoenix ', 'Décuple la force'),
+                'Chance': new QuestObject('Potion de chance', 4, 'Une fiole vide, trois herbes médicinales, deux racines de mandragore', 'Confère une chance incroyable'),
+                'Ressurection': new QuestObject('Potion de resu', 5, 'Une fiole vide, deux herbes médicinales, deux racines de mandragore, deux plumes de phoenix ', 'Ressucite un être mort '),
+            },
+            "Runes" : {
+                'Affutage' : new QuestObject('Rune d\'affutage',1,'Une pierre , glyphe de réparation','Restaure un équipement pas encore cassé'),
+                'Reparation' : new QuestObject('Rune de répatation',2,'Une ferrite, glyphe de réparation','Répare un équipement cassé'),
+                'Bijoux' : new QuestObject('Rune de réparation des bijoux',3,'Un lingot d\'or, glyphe de réparation','Répare un cristal / bijoux cassé'),
+                'Divine' : new QuestObject('Rune d eprotection divine',4,'Un Lingot d\'or, glyphe divine','Répare et protège un equipement de la casse'),
+            },
+            "Parchemins" : {
+                'Sommeil' : new QuestObject('Parchemin de sommeil',1,'Un parchemin, incantation de sommeil','Permet à la cible de faire de beaux rêves'),
+                'Amour' : new QuestObject('Parchemin d\'amour',2,'Un parchemin, incantation de manipulation','Permet de rendre la cible amoureuse du lanceur'),
+                'Persuasion' : new QuestObject('Parchemin de persuasion',3,'Un parchemin, incantation de persuasion','La cible accepte TOUS provenant du lanceur'),
+                'Oublie' : new QuestObject('Parchemin d\'oublie',4,'Un parchemin, incantation de mental','La cible oublie TOUS ce que le lanceur souhaite'),
+                'Competence' : new QuestObject('Parchemin de compétence accrue',5,'Un parchemin, incantation d\'amélioration','Augmente ou diminue un trait choisi de la cible'),
+            }
+        };
+        M.quests ={
+            //IMPORTANT QUESTS
+            "VilMalendrin" : new Quest('Des projets de richesses','Bonjour, mage. Je suis à la recherche d\'une magie pour soulager les problèmes de sommeil sensible.',200,M.questObject.Parchemins.Sommeil,-15),
+            "VilMalendrin_2" : new Quest('Des projets de vengeance','Bon alors !!! je sais que je ne suis pas apprécié dans ce village mais ce n\'est pas une raison pour fournir des sort qui me nuisent. Vous avez intéret à me donner Un parchemin de persuasion pour que je récupère ce que ce voleur m\'a dérobé !!',500,M.questObject.Potions.Soin,-30),
+            "VilMalendrin_3" : new Quest('Des projets de fuite','Je vous remercie beaucoup !!!! maintenant je suis recherché dans tous le royaume, alors qu\'il le mérité !! Il faut que j\'efface mes traces auprès du commissaire, donnez moi ce qu\'il faut !' ,0,M.questObject.Parchemins.Oublie,50),
+
+            //RANDOM QUESTS POTION
+            "Chien" : new Quest('Chien blessé','Bonjour, monsieur le magicien, pendant que je jouais avec mon chien, un méchant noble lui à donné un coup. Il a la patte cassé, je sais pas quoi faire ?   ',10,M.questObject.Potions.Soin,5),
+            "ProcheMalade" : new Quest('Chat malade','Bonjour, magicien, un de mes proche est gravement malade, et j\'aurai besoin d\'une potion pour la soigner !',30,M.questObject.Potions.Guerison,5),
+            "Combattant" : new Quest('Un combattant aguéri','Mage ! j\'ai besoin de plus de force ! VITEEEEE !!!!',5,M.questObject.Potions.Soin,15),
+            "Novice" : new Quest('Un combattant peu aguéri','Bon...Bonjour monsieur, j... je dois bientôt partir pour le champ de bataille, mais avec ma poisse, je vais surement prendre un flèche perdu et mourir. Vous avez quelque chose.',0,M.questObject.Potions.Soin,5),
+            "Chasseur" : new Quest('Un chasseur ne sachant chasser','Excusez-moi, Auriez-vous quelque-chose de très puissant, qui pourrait... par exemple... redonner la vie à quelqu\'un ?',200,M.questObject.Potions.Soin,-10),
+
+            //RANDOM QUESTS RUNES
+            "VoleurAncien" : new Quest('Trésor ancien','Bonjour, grand sorcier respectable. Je suis à la recherche d\'une runes permettant d\'embellir et de rendre cette ancien relique réutilisable ? ',300,M.questObject.Runes.Affutage,-20),
+            "CombattantPeuSoigneux" : new Quest('Un combattant peu soigneux','Mage !!! , Mon épée s\'est brisée !!! faites quelque chose !!!',5,M.questObject.Runes.Reparation,15),
+            "NoblesseTriste" : new Quest('Une noblesse attristé','mage... le bijoux hérité de ma défunte mère, s\'est brisé en mille morceaux... Par pitié, aidez-moi...',15,M.questObject.Runes.Bijoux,5),
+            "Heros" : new Quest('Futur Héro','Bonjour à toi grand mage, j\'ai récemment acquéri cette relique magique. Mais comme vous pouvez le voir, cette épée commence à ce briser. Je recherche donc une rune me permettant de la protéger.' ,500,M.questObject.Runes.Divine,20),
+
+            //RANDOM QUESTS PARCHEMIN
+            "Sommeil" : new Quest('Un sommeil reposant','Monsieur, on m\'a conseillé de venir vous voir pour mon probléme, la nuit mon esprit est torturé et je ne peux m\'endormir...',10,M.questObject.Parchemins.Sommeil,5),
+            "ChevelierDeRose" : new Quest('Roméo et Juliette','Mage !! je suis amoureux de... d\'une agricultrice, mais sa mère ne m\'accorde pas leur consentement. Auriez-vous... quelque chose pour qu\'ils m\'aiment autant que j\'aime ma dulcinée',60,M.questObject.Parchemins.Amour,5),
+            "Marchand" : new Quest('Rude négociation','Bonjour, je suis moi aussi un commerçant, et je recherche quelque chose pour m\aider durant des négociations',100,M.questObject.Parchemins.Persuasion,-10),
+            "SoldatSuicidaire" : new Quest('Douloureux souvenir','Mage ... Je veux tout oublier... oublier mes erreurs, et cette guerre !!! ',50,M.questObject.Parchemins.Oublie,-5),
+            "PaysanPeureux" : new Quest('Un agriculteur peu motivé','B\'jour Msieur. Tout les matins j\'la flemme de t\'vailler,Vous\'riez un t\'uc pour Moi',10,M.questObject.Parchemins.Competence,15),
+
+        };
+        M.pnjs = {
+            "Capricol": {
+                //IMPORTANT PNJ
+
+                'Fastpaul': new Pnj('Fastpaul', 'Noble', null, M.quests.Marchand),
+
+                //RANDOM PNJ
+                'Roywulf': new Pnj('Roywulf', 'Voleur', null, M.quests.VoleurAncien),
+                'Eallett': new Pnj('Eallett', 'Paysanne', null, M.quests.ProcheMalade),
+                'Roneal': new Pnj('Roneal', 'Petite fille', null, M.quests.Chien),
+                'Nasba': new Pnj('Nasba', 'Chasseur', null, M.quests.Chasseur),
+                'Evermit': new Pnj('Evermit', 'Soldat', null, M.quests.Combattant),
+                'Muelord': new Pnj('Muelord', 'Soldat', null, M.quests.Novice),
+                'Nadon': new Pnj('Nadon', 'Soldat', null, M.quests.CombattantPeuSoigneux),
+                'Elfvid': new Pnj('Elfvid', 'Noble', null, M.quests.NoblesseTriste),
+                'Venred': new Pnj('Venred', 'Héros', null, M.quests.Heros),
+                'Roe': new Pnj('Roe', 'Veille dame', null, M.quests.Sommeil),
+                'Retvise': new Pnj('Retvise', 'Chevalier', null, M.quests.ChevelierDeRose),
+                'Brandbard': new Pnj('Brandbard', 'Soldat', null, M.quests.SoldatSuicidaire),
+                'Rolla': new Pnj('Rolla', 'Agriculteur', null, M.quests.PaysanPeureux),
+            },
+        };
     },
 
     canPlayGameloop: function() {
@@ -158,16 +239,16 @@ var M = {
         }
     },
 
-    handleCollision: function(staticObj, movingObj) {
+    handleCollision: function(movingObj, staticObj) {
         let dw, dh, vx, vy;
 
         // Calculate the distance between the 2 objects
-        vx = (staticObj.xColli+staticObj.widthColli/2)-(movingObj.xColli+movingObj.widthColli/2);
-        vy = (staticObj.yColli+staticObj.heightColli/2)-(movingObj.yColli+movingObj.heightColli/2);
+        vx = (movingObj.xColli+movingObj.widthColli/2)-(staticObj.xColli+staticObj.widthColli/2);
+        vy = (movingObj.yColli+movingObj.heightColli/2)-(staticObj.yColli+staticObj.heightColli/2);
 
         // Minimal distance before the collision
-        dw = staticObj.widthColli/2 + movingObj.widthColli/2;
-        dh = staticObj.heightColli/2 + movingObj.heightColli/2;
+        dw = movingObj.widthColli/2 + staticObj.widthColli/2;
+        dh = movingObj.heightColli/2 + staticObj.heightColli/2;
 
         if (Math.abs(vx) < dw) {
             if(Math.abs(vy) < dh){
@@ -177,18 +258,18 @@ var M = {
 
                 if (overlapX >= overlapY) {
                     if (vy > 0) {
-                        staticObj.y = staticObj.y + overlapY;
+                        movingObj.y = movingObj.y + overlapY;
                         return M.COLLISION_TOP;
                     } else {
-                        staticObj.y = staticObj.y - overlapY;
+                        movingObj.y = movingObj.y - overlapY;
                         return M.COLLISION_BOTTOM;
                     }
                 } else {
                     if (vx > 0) {
-                        staticObj.x = staticObj.x + overlapX;
+                        movingObj.x = movingObj.x + overlapX;
                         return M.COLLISION_LEFT;
                     } else {
-                        staticObj.x = staticObj.x - overlapX;
+                        movingObj.x = movingObj.x - overlapX;
                         return M.COLLISION_RIGHT;
                     }
                 }
@@ -196,6 +277,17 @@ var M = {
         }
 
         return false;
+    },
+
+    handleInteractionCollision(sprite, tile) {
+        for(let i=0; i<tile.points.length; i++) {
+            if ( (sprite.xColli + sprite.widthColli) > tile.points[i].x &&
+                tile.points[i].x > sprite.xColli &&
+                (sprite.yColli + sprite.heightColli) > tile.points[i].y &&
+                tile.points[i].y > sprite.yColli){
+                return true;
+            }
+        }
     },
 
     updatePlayerPosition() {
@@ -229,12 +321,24 @@ var M = {
         M.player.move(dirX, dirY);
     },
 
-    isPlayerCollision() {
+    playerCollision() {
         for (let i=0; i<M.tiles.length; i++) {
-
-
             if(M.tiles[i].haveCollision === true && M.handleCollision(M.player, M.tiles[i]) !== false) {
                 return true;
+            }
+        }
+
+        M.tile_selected = null;
+        for (let k=0; k<M.tilesInteraction.length; k++){
+            if(M.tilesInteraction[k].haveCollision === true) {
+                M.handleCollision(M.player, M.tilesInteraction[k]);
+            }
+            if (M.handleInteractionCollision(M.player,M.tilesInteraction[k])){
+                M.tile_selected = M.tilesInteraction[k];
+                if (M.space){
+                    M.space = false;
+                    M.tile_selected.interaction();
+                }
             }
         }
     },
@@ -242,6 +346,6 @@ var M = {
     update() {
         // Player
         M.updatePlayerPosition();
-        M.isPlayerCollision();
+        M.playerCollision();
     }
 };

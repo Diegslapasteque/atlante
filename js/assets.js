@@ -84,7 +84,7 @@ const ASSETS = {
         ]
     },
     13: {
-        haveCollision: true,
+        haveCollision: false,
         sprites: [
             'assets/tiles/PlancheBasTop.png'
         ]
@@ -97,6 +97,9 @@ const ASSETS = {
     },
     15: {
         haveCollision: true,
+
+        interaction : preparePotion,
+
         sprites: [
             'assets/tiles/PlancheCauldron.png'
         ]
