@@ -11,8 +11,7 @@ var C = {
     gameLoop(currentDelta) {
         // Manage the game animation frame
         M.gameAnimationFrame = window.requestAnimationFrame(C.gameLoop);
-        let delta = currentDelta - C.previousDelta;
-        if (M.FPS && delta < 1000 / M.FPS) { return; }
+        if(M.canPlayGameloop() === false) { return; }
 
 
         switch (M.gameState) {
@@ -25,6 +24,9 @@ var C = {
                 break;
 
             case M.LOADING:
+                if(M.objectsToLoad === 0) {
+                    M.gameState = M.PLAYING;
+                }
                 console.log('Loading...');
                 break;
 
@@ -48,17 +50,17 @@ var C = {
         V.clearView();
 
         // Rendu de l'arrière-plan
-        V.drawImage(M.background);
+        V.drawObject(M.background);
 
         // Rendu du joueur
-        V.drawImage(M.player);
+        V.drawAnimatedObject(M.player);
 
         // M.objects.forEach(V.drawImage);
     },
 
     calcObjectsToLoad() {
-        // Equal to all the sounds (M.SOUNDS_SOURCES.length) + assets (1 board)
-        M.objectsToLoad = Object.keys(M.SOUNDS_SOURCES).length + 1;
+        // Equal to all the sounds (M.SOUNDS_SOURCES.length)
+        M.objectsToLoad = Object.keys(M.SOUNDS_SOURCES).length;
     },
 
     objectLoaded() {
@@ -77,6 +79,12 @@ var C = {
             case 'ArrowRight':
                 M.right = true;
                 break;
+            case 'ArrowUp':
+                M.up = true;
+                break;
+            case 'ArrowDown':
+                M.down = true;
+                break;
         }
     },
 
@@ -87,6 +95,12 @@ var C = {
                 break;
             case 'ArrowRight':
                 M.right = false;
+                break;
+            case 'ArrowUp':
+                M.up = false;
+                break;
+            case 'ArrowDown':
+                M.down = false;
                 break;
         }
     },

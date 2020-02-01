@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Map Editor</title>
+    <link rel="stylesheet" type="text/css" href="css/editor.css">
+</head>
+<body>
+    
+    <div class="mapContainer">
+        <canvas class="canvasMap"></canvas>
+
+        <div class="addContainer">
+        	<input class="add addColumns" type="number" name="columns">
+        	<p class="x">x</p>
+        	<input class="add addRows" type="number" name="rows">
+        	<input class="button__add" type="button" name="" value="Appliquer">
+        </div>
+
+        <div class="importContainer">
+            <input class="file__importMap" type="file">
+            <p>Ou</p>
+            <div class="row__importContainer">
+                <input class="text__importMap" type="text" placeholder="Saisissez un tableau 2D">
+                <input class="button__importMap" type="button" value="OK">
+            </div>
+        </div>
+
+        <div class="exportContainer">
+            <input class="folder__exportMap" type="text" placeholder="Dossier sur le serveur...">
+            <input class="button__exportMap" type="button" value="Exporter la carte">
+        </div>
+    </div>
+    <div class="assets">
+        <!-- Contient toutes les tiles en balise img -->
+    </div>
+
+
+
+    <script src="js/editor.js"></script>
+
+</body>
+</html>

@@ -1,14 +1,25 @@
 const ASSETS = {
     player: {
-        sX: 0,
-        sY: 8,
-        sWidth: 46,
-        sHeight: 9,
+        width: 80,
+        height: 80,
+        sprites: {
+            up: [
+                'assets/player/up/1.svg'
+            ],
+            down: [
+                'assets/player/down/1.svg'
+            ],
+            left: [
+                'assets/player/left/1.svg'
+            ],
+            right: [
+                'assets/player/right/1.svg'
+            ]
+        }
     },
     background: {
-        sX: 0,
-        sY: 17,
-        sWidth: 391,
-        sHeight: 393,
+        sprites: [
+            'assets/background.jpg'
+        ]
     },
 };
