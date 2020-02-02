@@ -49,6 +49,9 @@ function preparePotion() {
         },5000);
         clearInventory();
     }
+    else {
+        V.renderErrorRecipe('Votre inventaire ne vous permet pas de fabriquer une potion');
+    }
 }
 
 function prepareRune(type) {
@@ -101,6 +104,9 @@ function prepareScroll() {
     }else {
         V.renderErrorRecipe('Votre inventaire ne vous permet pas de fabriquer un parchemin');
     }
+    else {
+        V.renderErrorRecipe('Votre inventaire ne vous permet pas de fabriquer un parchemin');
+    }
 }
 
 function addRessourceToInventory(type) {
@@ -116,7 +122,14 @@ function addRessourceToInventory(type) {
 
 function readBookOfRecipe(){
     M.gameState = M.READING;
-    V.renderBook(M.questObject);
+    console.log("hello");
+    if(document.querySelector('#book-container').classList.contains('active')){
+        document.querySelector('#book-container').classList.remove('active');
+        console.log("hello");
+
+    }else{
+        V.renderBook(M.questObject);
+    }
 }
 
 function validateQuest(){
