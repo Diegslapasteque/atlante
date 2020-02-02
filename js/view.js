@@ -207,6 +207,7 @@ var V = {
             pnj.waiting = false;
             pnjQuest.isQuestAccomplished = true;
             V.renderCityInfluence();
+            M.player_quests_objects.splice(M.player_quests_objects.indexOf(pnjQuest.objectRequested),1);
         });
 
         questContainer.querySelector('.quest-button-refuse').addEventListener('mousedown', function (ev) {

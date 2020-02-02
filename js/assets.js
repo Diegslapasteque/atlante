@@ -111,32 +111,47 @@ const ASSETS = {
             'assets/tiles/cauldron.png'
         ]
     },
-    16: {
+    'incantationDeSomeil-scroll': {
         haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
         sprites: [
             'assets/tiles/table-ink1.png'
         ]
     },
-    17: {
+    'incantationAmour-scroll': {
         haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
         sprites: [
             'assets/tiles/table-ink2.png'
         ]
     },
-    18: {
+    'incantationDePersuasion-scroll': {
         haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
         sprites: [
             'assets/tiles/table-ink3.png'
         ]
     },
-    19: {
+    'incantationOublie-scroll': {
         haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
         sprites: [
             'assets/tiles/table-ink4.png'
         ]
     },
-    20: {
+    'incantationDeCompetance-scroll': {
         haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
         sprites: [
             'assets/tiles/table-ink5.png'
         ]
