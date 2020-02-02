@@ -163,9 +163,9 @@ var M = {
             //RANDOM QUESTS POTION
             "Chien" : new Quest('Chien blessé','Bonjour, Monsieur le Magicien, pendant que je jouais avec mon chien, un méchant noble lui à donné un coup. Il a la patte cassé, je ne sais pas quoi faire ?   ',10,M.questObject.Potions.Soin,5),
             "ProcheMalade" : new Quest('Chat malade','Bonjour, magicien, un de mes proches est gravement malade, et j\'aurai besoin d\'une potion pour la soigner !',30,M.questObject.Potions.Guerison,5),
-            "Combattant" : new Quest('Un combattant aguérri','Mage ! j\'ai besoin de plus de force ! VITEEEEE !!!!',5,M.questObject.Potions.Soin,15),
-            "Novice" : new Quest('Un combattant peu aguérri','Bon...  Bonjour monsieur, j... je dois bientôt partir pour le champ de bataille, mais avec ma poisse, je vais sûrement prendre un flèche perdu et mourir. Vous avez quelque chose.',0,M.questObject.Potions.Soin,5),
-            "Chasseur" : new Quest('Un chasseur ne sachant chasser','Excusez-moi, Auriez-vous quelque chose de très puissant, qui pourrait... par exemple... redonner la vie à quelqu\'un ?',200,M.questObject.Potions.Soin,-10),
+            "Combattant" : new Quest('Un combattant aguérri','Mage ! j\'ai besoin de plus de force ! VITEEEEE !!!!',5,M.questObject.Potions.Force,15),
+            "Novice" : new Quest('Un combattant peu aguérri','Bon...  Bonjour monsieur, j... je dois bientôt partir pour le champ de bataille, mais avec ma poisse, je vais sûrement prendre un flèche perdu et mourir. Vous avez quelque chose.',0,M.questObject.Potions.Chance,5),
+            "Chasseur" : new Quest('Un chasseur ne sachant chasser','Excusez-moi, Auriez-vous quelque chose de très puissant, qui pourrait... par exemple... redonner la vie à quelqu\'un ?',200,M.questObject.Potions.Resurection,-10),
 
             //RANDOM QUESTS RUNES
             "VoleurAncien" : new Quest('Trésor ancien','Bonjour, grand sorcier respectable. Je suis à la recherche d\'une runes permettant d\'embellir et de rendre cette ancienne relique réutilisable ? ',300,M.questObject.Runes.Affutage,-20),
