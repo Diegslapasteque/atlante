@@ -1,0 +1,353 @@
+.page {
+    text-align: center;
+}
+
+#game {
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 1rem;
+    /*! margin: 1em 0; */
+}
+
+#end-of-the-day {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+    height: 896px;
+    width: 500px;
+    margin: auto;
+    top : 0;
+    left : 30%;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+#book-container, #quest-container {
+    display: none;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+
+#quest-container {
+    display: block;
+}
+
+#city-influence-container{
+    display: block;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+
+#city-influence{
+    display: block;
+    margin: 1% auto;
+    width : 900px;
+    display: flex;
+    justify-content: right;
+}
+
+#influence{
+    display: block;
+    background: yellow;
+    width : 0;
+    height: 20px;
+}
+
+#book, .quest {
+    flex-direction: column;
+    height: 896px ;
+    width: 700px;
+    margin: auto;
+    padding : 1%;
+    top : 0;
+    font-family: 'Press Start 2P', sans-serif;
+    color : white;
+    background: rgba(0, 0, 0, .9);
+    overflow: auto;
+}
+
+#book ul{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#book ul li{
+    width : 90%;
+    margin: 3% auto;
+}
+
+#Potions-recipes, #Runes-recipes, #Parchemins-recipes{
+    width : 95%;
+    padding-bottom : 2%;
+}
+
+#Potions-recipes li , #Runes-recipes li , #Parchemins-recipes li{
+    font-family: 'Source Code Pro';
+}
+
+#book-title{
+    margin : 2%;
+    text-align: center;
+}
+
+#quit-book, .quit-quest {
+    position: relative;
+    right: 0;
+    text-align: end;
+    color : red;
+    width : 100%;
+    display: block;
+}
+
+
+.active{
+    display: flex !important;
+}
+
+#end-of-the-day p{
+    width : 75%;
+    margin:  5% auto;
+    color : white;
+    font-family: 'Press Start 2P';
+    text-align: center;
+    font-size: 17px;
+}
+
+ul{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+ul li{
+    margin : 1% 0%;
+    font-family: 'Source Code Pro';
+
+}
+
+#timer-container{
+    display: block;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+#timer{
+    display: block;
+    color : white;
+    font-family: 'Press Start 2P';
+    font-size: 20px;
+    margin: 1% auto;
+    width : 900px;
+    color: white;
+}
+
+
+#info-container{
+    display: block;
+    position: absolute;
+    top : 836px;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+#recipe-info{
+    display: none;
+    color : white;
+    font-family: 'Press Start 2P';
+    text-align: center;
+    font-size: 20px;
+    margin: .5% auto;
+    width : 900px;
+    color: white;
+    padding : 1%;
+    background: rgba(0, 0, 0, .9);
+}
+
+.quest-accepted {
+    display: none;
+    margin-bottom: 1rem;
+    color: #00b900;
+}
+
+#inventory-container{
+    display: none;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+
+#inventory{
+    display: block;
+    flex-direction: column;
+    height: 896px ;
+    width: 700px;
+    margin: auto;
+    padding : 1%;
+    top : 0;
+    font-family: 'Press Start 2P';
+    color : white;
+    background: rgba(0, 0, 0, .9);
+    overflow: auto;
+}
+
+#inventory ul{
+    width : 90%;
+    margin: 3% auto;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#inventory ul li{
+    list-style: circle;
+    width : 90%;
+    margin: 1% auto;
+}
+
+#inventory-ressources, #inventory-quest-object{
+    width : 95%;
+    padding-bottom : 2%;
+}
+
+#inventory-ressources li , #inventory-quest-object li {
+    font-family: 'Source Code Pro';
+}
+
+
+#quit-inventory{
+    position: relative;
+    right: 0;
+    text-align: end;
+    color : red;
+    width : 100%;
+    display: block;
+}
+.quest-button-give {
+    margin: 0.5em 0;
+    display: none;
+}
+
+#inventory{
+    display: block;
+    flex-direction: column;
+    height: 896px ;
+    width: 700px;
+    margin: auto;
+    padding : 1%;
+    top : 0;
+    font-family: 'Press Start 2P';
+    color : white;
+    background: rgba(0, 0, 0, .9);
+    overflow: auto;
+}
+
+.d-flex{
+    display: flex;
+    align-items: center;
+}
+
+.f-row{
+    flex-direction: row;
+}
+
+#loader-border{
+    position: absolute;
+    border: 1px solid black;
+    width: 64px;
+    height: 10px;
+    top : 26%;
+    right: 33.5%;
+    display: none;
+}
+#loader-inner{
+    background-color: green;
+    height: 10px;
+    width: 0;
+}
+
+.quest {
+    display: block;
+    padding: 1rem 4rem;
+}
+
+.quest-pnj {
+    display: block;
+    text-align: center;
+    font-size: 25px;
+}
+
+.quest-title {
+    font-family: 'source code pro', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 1rem;
+}
+
+.quest-content {
+    font-family: 'source code pro', sans-serif;
+}
+
+#quests {
+    color: red;
+}
+
+#next-day, .quest-button-accept, .quest-button-refuse, .quest-button-give {
+    display: inline-block;
+    background-color: #ECECEC;
+    border: 5px solid black;
+    box-shadow: 3px 3px 0px 1px rgba(0, 0, 0, .25), inset 3px 3px white;
+    cursor: pointer;
+    padding: .5rem;
+    width: 50%;
+    color: black;
+    font-family: 'Press Start 2P', sans-serif;
+}
+.quest-button-refuse {
+    background-color: #ff9070;
+}
+.quest-button-give, .quest-button-accept {
+    background-color: #9ff67f;
+}
+#potions{
+    margin: 2rem 0 0 1rem;
+}
+
+h4{
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+.info {
+    font-size: 22px;
+    line-height: 35px;
+}
+
+.book-titles {
+    display: block;
+    margin-top: 1rem;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    display: none;
+}

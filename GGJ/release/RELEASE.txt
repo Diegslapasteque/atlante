@@ -1,0 +1,16 @@
+ATLANTE
+
+Ce projet a été développé par 4 personnes en HTML, CSS et JavaScript vanilla (sans aucune librairie externe).
+
+Tous les assets ont été réalisé sous Photoshop et Illustrator par notre graphiste.
+
+Pour lancer le projet, vous devez lancer le fichier 'index.html' disponible dans le dossier 'src' avec Mozilla Firefox ou Google Chrome dans une version récente.
+Il faudra certainement dézoomer un peu avec 'Ctrl + -' sur les PC portables ou les petits écrans.
+
+Commandes :
+ - Flèches directionnelles : Se déplacer.
+ - i : Ouvrir/Fermer l'inventaire.
+ - Barre d'espace : Interagir avec les personnages, les ingrédients et le livre de recettes.
+ - Echap : Fermer une boîte de dialogues.
+
+PS: Mangez des tomates cerises !
