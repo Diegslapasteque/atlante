@@ -20,7 +20,7 @@ var V = {
 
     initTimer(){
         document.getElementById('timer').innerHTML =
-            `3:03`;
+            `6:01`;
         V.startTimer();
     },
 
@@ -112,6 +112,12 @@ var V = {
 
     renderInventory(playerInventory, playerQuestsObjects) {
         var inventory = document.querySelector('#inventory');
+        M.gameState = M.READING;
+        if(document.querySelector('#inventory-container').classList.contains('active')) {
+            M.gameState = M.PLAYING;
+            document.querySelector('#inventory-container').classList.remove('active');
+            return;
+        }
         var invRess = document.querySelector("#inv-ress");
         var invObj = document.querySelector("#inv-obj");
         var allRessources ={};
@@ -146,6 +152,7 @@ var V = {
         document.querySelector('#quit-inventory').style.cursor = "pointer";
         document.querySelector('#quit-inventory').addEventListener('click',function(event){
             document.querySelector('#inventory-container').classList.remove('active');
+            M.gameState = M.PLAYING;
         })
     },
 
@@ -174,10 +181,10 @@ var V = {
         }
 
         if(isQuestAccepted === true) {
-            questContainer.querySelector('.quest-buttons').style.display = 'none';
+            questContainer.querySelector('.quest-button-accept').style.display = 'none';
         }
         else {
-            questContainer.querySelector('.quest-buttons').style.display = 'block';
+            questContainer.querySelector('.quest-button-accept').style.display = 'block';
         }
         questContainer.querySelector('.quest').style.display = 'block';
         document.querySelector('#quest-container').appendChild(questContainer);
@@ -205,6 +212,7 @@ var V = {
             questContainer.style.display = 'none';
             pnj.look = pnj.looks.LOOK_DOWN;
             pnj.waiting = false;
+            pnjQuest.isQuestAccepted = true;
         });
 
         questContainer.querySelector('.quit-quest').addEventListener('mousedown', function (ev) {

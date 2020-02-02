@@ -50,7 +50,7 @@
         <p class="quest-content"></p>
         <br>
         <p class="quest-accepted">Quête accepté!</p>
-        <div class="quest-buttons">
+        <div class="quest-buttons d-flex f-row">
             <button class="quest-button-accept">Accepter</button>
             <button class="quest-button-refuse">Refuser</button>
         </div>
@@ -84,7 +84,7 @@
         <span id="quit-book">X</span>
         <span id="book-title">Liste des différentes recettes</span>
         <br>
-        <span id="potions">Potions :</span>
+        <span id="potions" class="book-titles">Potions :</span>
         <ul id="Potions-recipes">
             <li>
                 <h4>Potion de soin</h4>
@@ -122,7 +122,7 @@
                 <p>Ressucite un être mort</p>
             </li>
         </ul>
-        <span id="runes">Runes :</span>
+        <span id="runes" class="book-titles">Runes :</span>
         <ul id="Runes-recipes">
             <li>
                 <h4>Affutage</h4>
@@ -153,7 +153,7 @@
                 <p>Répare et protège un equipement de la casse</p>
             </li>
         </ul>
-        <span id="scrolls">Parchemins :</span>
+        <span id="scrolls" class="book-titles">Parchemins :</span>
         <ul id="Parchemins-recipes">
             <li>
                 <h4>Sommeil</h4>
@@ -194,6 +194,25 @@
     </div>
 </div>
 
+<div class="menu">
+    <button class="menu-play">JOUER</button>
+
+    <div>
+        <h2>But du jeu</h2>
+        <p>Aider Atlante, le mage nomade spécialisé dans les réparations, à répondre aux requêtes des habitants de la ville.<br>
+            Atlante peut aller regarder son livre magique afin de se rappeler des différentes préparations de Runes, Potions et Parchemins.<br>
+            A vous de deviner quel sera la bonne préparation qui satisfera chaque client.
+        </p>
+    </div>
+
+    <div>
+        <h2>Contrôles</h2>
+        <ul>
+            <li>Flèches directionnelles : Déplacer Atlante</li>
+            <li>i : Ouvrir l'inventaire</li>
+        </ul>
+    </div>
+</div>
 
 <!-- Librairies -->
 <script src="lib/howler.min.js"></script>

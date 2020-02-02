@@ -75,7 +75,7 @@ var M = {
     PLAYER_Y: null,
     PLAYER_WIDTH: null,
     PLAYER_HEIGHT: null,
-    PLAYER_SPEED: 3,
+    PLAYER_SPEED: 6,
 
     proba_pnj: 1,
     PNJ_SPEED: 2,
@@ -309,17 +309,17 @@ var M = {
             M.player.look = M.player.looks.LOOK_UP;
         }
         // Down
-        if(!M.up && M.down){
+        else if(!M.up && M.down){
             dirY = 1;
             M.player.look = M.player.looks.LOOK_DOWN;
         }
         // Left
-        if(M.left && !M.right){
+        else if(M.left && !M.right){
             dirX = -1;
             M.player.look = M.player.looks.LOOK_LEFT;
         }
         // Right
-        if(!M.left && M.right){
+        else if(!M.left && M.right){
             dirX = 1;
             M.player.look = M.player.looks.LOOK_RIGHT;
         }
