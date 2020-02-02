@@ -112,6 +112,14 @@ var C = {
             case ' ':
                 M.space = true;
                 break;
+            case 'Escape':
+                document.querySelector('#inventory-container').classList.remove('active');
+                document.querySelector('#book-container').classList.remove('active');
+                Array.from(document.querySelector('#quest-container').children).forEach(child => {
+                    child.style.display = 'none'
+                });
+                M.gameState = M.PLAYING;
+                break;
             case 'i':
                 V.renderInventory(M.player_inventory,M.player_quests_objects);
         }

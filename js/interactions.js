@@ -119,10 +119,8 @@ function addRessourceToInventory(type) {
 
 function readBookOfRecipe(){
     M.gameState = M.READING;
-    console.log("hello");
     if(document.querySelector('#book-container').classList.contains('active')){
         document.querySelector('#book-container').classList.remove('active');
-        console.log("hello");
 
     }else{
         V.renderBook(M.questObject);
