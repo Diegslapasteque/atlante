@@ -86,3 +86,12 @@ function addRessourceToInventory(type) {
        console.log('Error : Ressources type doesn\'t match');
    }
 }
+
+function readBookOfRecipe(){
+    V.renderBook(M.questObject);
+}
+
+function validateQuest(){
+    C.manageCityInfluence();
+}
+

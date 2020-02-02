@@ -3,7 +3,7 @@ class Quest  {
         this.title = title;
         this.content = content;
         this.reward = reward;
-        this.isQuestAccomplished = false;
+        this.isQuestAccomplished = true;
         this.objectRequested =objectRequested;
         this.cityInfluence = cityInfluence;
     }
@@ -17,9 +17,8 @@ class Quest  {
     setReward(newReward){this.reward = newReward; }
 
     getIsQuestAccomplished(){ return this.isQuestAccomplished;}
-    setIsQuestAccomplished (bool , passedQuestTo){
+    setIsQuestAccomplished (bool){
         this.isQuestAccomplished = bool;
-        if(this.influencedPnj !== null){this.influencedPnj.setActualQuest(passedQuestTo)}
     }
 
     getObjectRequested(){return this.objectRequested;}

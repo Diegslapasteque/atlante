@@ -5,3 +5,4 @@ class Ressources {
         this.sprite = sprite;
     }
 }
+
