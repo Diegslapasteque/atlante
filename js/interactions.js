@@ -13,22 +13,18 @@ function preparePotion() {
 
     if ((RECIPES.POTIONDESOIN.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDESOIN.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
         M.player_quests_objects.push(M.questObject.Potions.Soin);
-        console.log('Succes');
         clearInventory();
     }
     if ((RECIPES.POTIONDEGUERISON.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDEGUERISON.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
         M.player_quests_objects.push(M.questObject.Potions.Guerison);
-        console.log('Succes');
         clearInventory();
     }
     if ((RECIPES.POTIONDEFORCE.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDEFORCE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
         M.player_quests_objects.push(M.questObject.Potions.Force);
-        console.log('Succes');
         clearInventory();
     }
     if ((RECIPES.POTIONDECHANCE.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDECHANCE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
         M.player_quests_objects.push(M.questObject.Potions.Chance);
-        console.log('Succes');
         clearInventory();
     }
     if ((RECIPES.POTIONDERESURECTION.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDERESURECTION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
@@ -53,15 +49,17 @@ function preparePotion() {
         },5000);
         clearInventory();
     }
+    else {
+        V.renderErrorRecipe('Votre inventaire ne vous permet pas de fabriquer une potion');
+    }
 }
 
 function prepareRune(type) {
-    console.log(type)
-    if (JSON.stringify(RECIPES.RUNEAFFUTAGE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
+    if (JSON.stringify(RECIPES.RUNEAFFUTAGE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))&& type === 'repairGlyph'){
         M.player_quests_objects.push(M.questObject.Runes.Affutage);
         clearInventory();
     }
-    else if (JSON.stringify(RECIPES.RUNEDEREPARATION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
+    else if (JSON.stringify(RECIPES.RUNEDEREPARATION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))&& type === 'repairGlyph'){
         M.player_quests_objects.push(M.questObject.Runes.Reparation);
         clearInventory();
     }
@@ -83,30 +81,28 @@ function clearInventory(){
 }
 
 function prepareScroll() {
-    if(!M.player_inventory.find(function (e) {return e.name == 'parchemin';})){
-        V.renderErrorRecipe('Il vous manque un parchemin');
-        return;
-    }
 
     if (JSON.stringify(RECIPES.PARCHEMINDESOMEIL.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
         M.player_quests_objects.push(M.questObject.Parchemins.Sommeil);
         clearInventory();
     }
-    if (JSON.stringify(RECIPES.PARCHEMINAMOUR.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
+    else if (JSON.stringify(RECIPES.PARCHEMINAMOUR.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
         M.player_quests_objects.push(M.questObject.Parchemins.Amour);
         clearInventory();
     }
-    if (JSON.stringify(RECIPES.PARCHEMINDEPERSUASION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
+    else if (JSON.stringify(RECIPES.PARCHEMINDEPERSUASION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
         M.player_quests_objects.push(M.questObject.Parchemins.Persuasion);
         clearInventory();
     }
-    if (JSON.stringify(RECIPES.PARCHEMINOUBLIE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
+    else if (JSON.stringify(RECIPES.PARCHEMINOUBLIE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
         M.player_quests_objects.push(M.questObject.Parchemins.Oublie);
         clearInventory();
     }
-    if (JSON.stringify(RECIPES.PARCHEMINDECOMPETENCE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
+    else if (JSON.stringify(RECIPES.PARCHEMINDECOMPETENCE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
         M.player_quests_objects.push(M.questObject.Parchemins.Competence);
         clearInventory();
+    }else {
+        V.renderErrorRecipe('Votre inventaire ne vous permet pas de fabriquer un parchemin');
     }
 }
 
@@ -117,13 +113,18 @@ function addRessourceToInventory(type) {
    }else if(M.player_inventory[0].type === type[1]){
        M.player_inventory.push(new Resources(type[0],type[1]));
    }else {
-       console.log('Error : Resources type doesn\'t match');
+       V.renderErrorRecipe('Vous ne pouvez pas mélanger différent type de resources !');
    }
 }
 
 function readBookOfRecipe(){
     M.gameState = M.READING;
-    V.renderBook(M.questObject);
+    if(document.querySelector('#book-container').classList.contains('active')){
+        document.querySelector('#book-container').classList.remove('active');
+
+    }else{
+        V.renderBook(M.questObject);
+    }
 }
 
 function validateQuest(){

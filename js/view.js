@@ -73,8 +73,16 @@ var V = {
         V.context.fillRect(0, 0, V.canvas.width, V.canvas.height);
     },
 
-    renderCityInfluence(influence) {
-        document.querySelector("#influence").style.width = influence+"%";
+    renderCityInfluence() {
+        M.cityInfluence = 1;
+        Object.entries(M.pnjsInfos.Capricol).forEach(pnj => {
+            if(pnj[1].actualQuests.isQuestAccomplished){
+                console.log(pnj[1].actualQuests.cityInfluence);
+                M.cityInfluence += pnj[1].actualQuests.cityInfluence;
+            }
+        });
+        if(M.cityInfluence <= 0){M.cityInfluence=0;}
+        document.querySelector("#influence").style.width = M.cityInfluence+"%";
     },
 
     renderEndOfTHeDay(pnjs) {
@@ -190,7 +198,6 @@ var V = {
         document.querySelector('#quest-container').appendChild(questContainer);
         questContainer = document.querySelector('#quest-container').lastElementChild;
 
-        console.log(questContainer);
         questContainer.querySelector('.quest-button-accept').addEventListener('mousedown', function (ev) {
             pnjQuest.isQuestAccepted = true;
             questContainer.querySelector('.quest-accepted').style.display = 'block';
@@ -205,6 +212,8 @@ var V = {
             pnj.look = pnj.looks.LOOK_DOWN;
             pnj.waiting = false;
             pnjQuest.isQuestAccomplished = true;
+            V.renderCityInfluence();
+            M.player_quests_objects.splice(M.player_quests_objects.indexOf(pnjQuest.objectRequested),1);
         });
 
         questContainer.querySelector('.quest-button-refuse').addEventListener('mousedown', function (ev) {

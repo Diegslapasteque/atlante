@@ -34,7 +34,6 @@ var C = {
                 if(M.objectsToLoad === 0) {
                     M.gameState = M.PLAYING;
                 }
-                console.log('Loading...');
                 break;
 
             case M.PLAYING:
@@ -79,14 +78,6 @@ var C = {
         M.objectsToLoad = Object.keys(M.SOUNDS_SOURCES).length;
     },
 
-    manageCityInfluence(){
-        Object.entries(M.pnjs.Capricol).forEach(pnj => {
-            if(pnj[1].actualQuests.isQuestAccomplished){
-                M.cityInfluence += pnj[1].actualQuests.cityInfluence;
-            }
-        });
-        V.renderCityInfluence(M.cityInfluence);
-    },
 
     refuseQuest(pnj, questTag) {
         M.gameState = M.PLAYING;
@@ -119,6 +110,14 @@ var C = {
                 break;
             case ' ':
                 M.space = true;
+                break;
+            case 'Escape':
+                document.querySelector('#inventory-container').classList.remove('active');
+                document.querySelector('#book-container').classList.remove('active');
+                Array.from(document.querySelector('#quest-container').children).forEach(child => {
+                    child.style.display = 'none'
+                });
+                M.gameState = M.PLAYING;
                 break;
             case 'i':
                 V.renderInventory(M.player_inventory,M.player_quests_objects);

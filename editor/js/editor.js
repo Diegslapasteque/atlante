@@ -139,7 +139,6 @@ class Map {
             for(var y=0; y<this.height; y+=this.size) {
                 for(var x=oldWidth; x<this.width-1; x+=this.size) {
                     // On crée un plot
-                    console.log(y/this.size);
                     var plot = new Plot(x, y, "");
                     this.plots[y/this.size].push(plot);
 
