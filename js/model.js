@@ -231,7 +231,6 @@ var M = {
                     C.objectLoaded();
                 },
                 onloaderror: function (id, message) {
-                    console.log(`Error when loading ${soundName}. ${message}`)
                 }
             });
         }

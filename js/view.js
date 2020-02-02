@@ -183,7 +183,6 @@ var V = {
         document.querySelector('#quest-container').appendChild(questContainer);
         questContainer = document.querySelector('#quest-container').lastElementChild;
 
-        console.log(questContainer);
         questContainer.querySelector('.quest-button-accept').addEventListener('mousedown', function (ev) {
             pnjQuest.isQuestAccepted = true;
             questContainer.querySelector('.quest-accepted').style.display = 'block';

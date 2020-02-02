@@ -34,7 +34,6 @@ var C = {
                 if(M.objectsToLoad === 0) {
                     M.gameState = M.PLAYING;
                 }
-                console.log('Loading...');
                 break;
 
             case M.PLAYING:
