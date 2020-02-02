@@ -20,20 +20,55 @@
     background: rgba(0, 0, 0, 0.85);
 }
 
+#book-container{
+    display: block;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+
 #book{
     display: none;
-    position: absolute;
-    justify-content: center;
     flex-direction: column;
-    align-items: start;
     height: 896px ;
-    width: 500px;
+    width: 700px;
     margin: auto;
+    padding : 1%;
     top : 0;
-    left : 30%;
     font-family: 'Press Start 2P';
     color : white;
     background: rgba(0, 0, 0, .9);
+    overflow: auto;
+}
+
+#book ul{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#book ul li{
+    width : 90%;
+    margin: 3% auto;
+}
+
+#Potions-recipes, #Runes-recipes, #Parchemins-recipes{
+    padding-bottom : 2%;
+}
+
+#book-title{
+    margin : 2%;
+    text-align: center;
+}
+
+#quit-book{
+    position: relative;
+    right: 0;
+    text-align: end;
+    color : red;
+    width : 100%;
 }
 
 

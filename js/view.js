@@ -105,7 +105,6 @@ var V = {
         Object.entries(objects).forEach(recipiestype => {
             var objectType = document.querySelector("#"+recipiestype[0]+"-recipes");
             Object.entries(recipiestype[1]).forEach(recipe => {
-
                 var object = document.createElement('li')
                 var objectTitle = document.createElement('p');
                 objectTitle.innerText = recipe[0]+" => \n"
