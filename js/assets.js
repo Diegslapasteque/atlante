@@ -47,8 +47,9 @@ const ASSETS = {
             'assets/tiles/table-scroll.png'
         ]
     },
-    7: {
+    'plumeDePhoenix-potion': {
         haveCollision: true,
+        interaction: addRessourceToInventory,
         sprites: [
             'assets/tiles/table-phoenix.png'
         ]
@@ -155,7 +156,7 @@ const ASSETS = {
         interaction : prepareScroll,
 
         sprites: [
-            'assets/tiles/table-scroll.png'
+            'assets/tiles/cauldron.png'
         ]
     },
     'RuneWorkshop': {

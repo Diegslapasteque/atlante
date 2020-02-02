@@ -77,13 +77,11 @@ function prepareScroll() {
 function addRessourceToInventory(type) {
     type = type.split("-");
    if (M.player_inventory.length<=0){
-       //M.player_inventory.push(new Ressources(type[0],type[1]));
-       M.player_inventory.push(new Ressources('parchemin','scroll'));
-       M.player_inventory.push(new Ressources('incantationDeSomeil','scroll'));
-   }else if(M.player_inventory[0].type == type[1]){
-       M.player_inventory.push(new Ressources(type[0],type[1]));
+       M.player_inventory.push(new Resources(type[0],type[1]));
+   }else if(M.player_inventory[0].type === type[1]){
+       M.player_inventory.push(new Resources(type[0],type[1]));
    }else {
-       console.log('Error : Ressources type doesn\'t match');
+       console.log('Error : Resources type doesn\'t match');
    }
 }
 
