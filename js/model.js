@@ -427,7 +427,6 @@ var M = {
                         }
                     }
                 } while (isOccupied === true && barNumber < M.maxBarNumber);
-                console.log(barNumber);
                 if(barNumber >= M.maxBarNumber) {
                     return;
                 }

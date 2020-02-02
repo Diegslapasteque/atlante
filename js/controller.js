@@ -113,6 +113,8 @@ var C = {
             case ' ':
                 M.space = true;
                 break;
+            case 'i':
+                V.renderInventory(M.player_inventory,M.player_quests_objects);
         }
     },
 
