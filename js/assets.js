@@ -55,14 +55,20 @@ const ASSETS = {
             'assets/tiles/table-phoenix.png'
         ]
     },
-    8: {
+    'racineDeMandragore-potion': {
         haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
         sprites: [
             'assets/tiles/table-mandragor.png'
         ]
     },
-    9: {
+    'herbeMedicinale-potion': {
         haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
         sprites: [
             'assets/tiles/table-plant.png'
         ]

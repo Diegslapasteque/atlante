@@ -32,8 +32,25 @@ function preparePotion() {
         clearInventory();
     }
     if ((RECIPES.POTIONDERESURECTION.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDERESURECTION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
-        M.player_quests_objects.push(M.questObject.Potions.Resurection);
-        console.log('Succes');
+        document.querySelector('#loader-border').classList.add('active')
+
+        setTimeout(function () {
+           document.querySelector('#loader-inner').style.width = "20%";
+        },1000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "40%";
+        },2000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "60%";
+        },3000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "80%";
+        },4000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "100%";
+            document.querySelector('#loader-border').classList.remove('active')
+            M.player_quests_objects.push(M.questObject.Potions.Resurection);
+        },5000);
         clearInventory();
     }
 }

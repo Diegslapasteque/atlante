@@ -264,3 +264,18 @@ ul li{
 .f-row{
     flex-direction: row;
 }
+
+#loader-border{
+    position: absolute;
+    border: 1px solid black;
+    width: 64px;
+    height: 10px;
+    top : 26%;
+    right: 33.5%;
+    display: none;
+}
+#loader-inner{
+    background-color: green;
+    height: 10px;
+    width: 0;
+}
