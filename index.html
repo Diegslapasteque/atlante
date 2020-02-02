@@ -5,7 +5,7 @@
     <title>Global Game Jam 2020</title>
 
     <!-- Fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/reset.css">
@@ -22,22 +22,53 @@
     </p>
 </div>
 
-<div id="end-of-the-day">
-    <p class="info">La journée est finie !!!</p>
-    <br>
-    <p>Liste des missions de la journée :</p>
-    <ul id="quests">
-    </ul>
+<div id="recap-container">
+    <div id="end-of-the-day">
+        <p class="info">La journée est finie !!!</p>
+        <br>
+        <p>Liste des missions de la journée :</p>
+        <ul id="quests">
+        </ul>
 
-    <p id="next-day">continuer</p>
-
+        <p id="next-day">continuer</p>
+    </div>
 </div>
+
+<div id="city-influence-container">
+    <div id="city-influence">
+        <span id="influence"></span>
+    </div>
+</div>
+
+<div id="book-container">
+    <div id="book">
+        <span id="quit-book">X</span>
+        <span id="book-title">Liste des différentes recettes</span>
+        <br>
+        <span id="otions">Potions :</span>
+        <ul id="Potions-recipes">
+        </ul>
+        <span id="runes">Runes :</span>
+        <ul id="Runes-recipes">
+        </ul>
+        <span id="scrolls">Parchemins :</span>
+        <ul id="Parchemins-recipes">
+        </ul>
+    </div>
+</div>
+
+<div id="info-container">
+    <p id="recipe-info"></p>
+</div>
+
 <!-- Librairies -->
 <script src="lib/howler.min.js"></script>
 
 <!-- Scripts -->
 <script src="js/class.js"></script>
 <script src="js/interactions.js"></script>
+<script src="js/ressources.js"></script>
+<script src="js/Reciepes.js"></script>
 <script src="js/pnj.js"></script>
 <script src="js/quest.js"></script>
 <script src="js/questObject.js"></script>

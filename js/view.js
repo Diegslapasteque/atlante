@@ -20,7 +20,7 @@ var V = {
 
     initTimer(){
         document.getElementById('timer').innerHTML =
-            `3:0`;
+            `3:01`;
         V.startTimer();
     },
 
@@ -73,6 +73,10 @@ var V = {
         V.context.fillRect(0, 0, V.canvas.width, V.canvas.height);
     },
 
+    renderCityInfluence(influence) {
+        document.querySelector("#influence").style.width = influence+"%";
+    },
+
     renderEndOfTHeDay(pnjs) {
         var stats = document.querySelector('#end-of-the-day');
         document.querySelector("#quests").innerHTML = "";
@@ -94,6 +98,45 @@ var V = {
         })
     },
 
+    renderErrorRecipe(msg){
+        document.querySelector('#recipe-info').innerHTML = msg;
+        setTimeout(function () {
+            document.querySelector('#recipe-info').innerHTML = "";
+        },2000)
+    },
+
+    renderBook(objects) {
+        var recipies = document.querySelector('#book');
+        var potionRecipies = document.querySelector("#Potions-recipes");
+        var runesRecipies = document.querySelector("#Runes-recipes");
+        var scrollsRecipies = document.querySelector("#Parchemins-recipes");
+        potionRecipies.innerHTML = "";
+        runesRecipies.innerHTML = "";
+        scrollsRecipies.innerHTML = "";
+
+        recipies.classList.add('active');
+        Object.entries(objects).forEach(recipiestype => {
+            var objectType = document.querySelector("#"+recipiestype[0]+"-recipes");
+            Object.entries(recipiestype[1]).forEach(recipe => {
+                var object = document.createElement('li')
+                var objectTitle = document.createElement('p');
+                objectTitle.innerText = recipe[0]+" => \n"
+                var objectRecipe = document.createElement('p');
+                objectRecipe.innerText = recipe[1].recipe;
+                var objectEffect = document.createElement('p');
+                objectEffect.innerText = recipe[1].effect;
+                object.appendChild(objectTitle);
+                object.appendChild(objectRecipe);
+                object.appendChild(objectEffect);
+                objectType.appendChild(object);
+            });
+
+        });
+        document.querySelector('#quit-book').addEventListener('click',function(event){
+            recipies.classList.remove('active');
+        })
+    },
+
 
     startTimer() {
         var presentTime = document.getElementById('timer').innerHTML;
@@ -110,8 +153,6 @@ var V = {
                 m + ":" + s;
             setTimeout(V.startTimer, 1000);
         }
-
-
     },
 
      checkSecond(sec) {

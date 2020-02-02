@@ -12,22 +12,100 @@
     justify-content: center;
     flex-direction: column;
     align-items: start;
-    height: 100vh ;
-    width: 35vh;
+    height: 896px;
+    width: 500px;
     margin: auto;
     top : 0;
-    left : 35vw;
+    left : 30%;
     background: rgba(0, 0, 0, 0.85);
 }
+
+#book-container{
+    display: block;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+
+#city-influence-container{
+    display: block;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+
+#city-influence{
+    display: block;
+    margin: 1% auto;
+    width : 900px;
+    display: flex;
+    justify-content: right;
+}
+
+#influence{
+    display: block;
+    background: yellow;
+    width : 0;
+    height: 20px;
+}
+
+#book{
+    display: none;
+    flex-direction: column;
+    height: 896px ;
+    width: 700px;
+    margin: auto;
+    padding : 1%;
+    top : 0;
+    font-family: 'Press Start 2P';
+    color : white;
+    background: rgba(0, 0, 0, .9);
+    overflow: auto;
+}
+
+#book ul{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#book ul li{
+    width : 90%;
+    margin: 3% auto;
+}
+
+#Potions-recipes, #Runes-recipes, #Parchemins-recipes{
+    padding-bottom : 2%;
+}
+
+#book-title{
+    margin : 2%;
+    text-align: center;
+}
+
+#quit-book{
+    position: relative;
+    right: 0;
+    text-align: end;
+    color : red;
+    width : 100%;
+}
+
 
 .active{
     display: flex !important;
 }
 
 #end-of-the-day p{
-    width : 80%;
+    width : 90%;
     margin:  5% auto;
     color : white;
+    font-family: 'Press Start 2P';
+    text-align: center;
     font-size: 24px;
 }
 
@@ -37,6 +115,11 @@ ul{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+ul li{
+    margin : 1% 0%;
+    font-family: 'Press Start 2P';
 }
 
 #timer-container{
@@ -50,7 +133,8 @@ ul{
 #timer{
     display: block;
     color : white;
-    font-size: 28px;
+    font-family: 'Press Start 2P';
+    font-size: 20px;
     margin: 1% auto;
     width : 900px;
     color: white;

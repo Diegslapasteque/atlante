@@ -140,6 +140,51 @@ const ASSETS = {
         ],
         interaction: barInteraction
     },
+    'fioleVide-potion': {
+        haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
+        sprites: [
+            'assets/tiles/table-potion.png'
+        ]
+    },
+    'ScrollWorkshop': {
+        haveCollision: true,
+
+        interaction : prepareScroll,
+
+        sprites: [
+            'assets/tiles/table-scroll.png'
+        ]
+    },
+    'RuneWorkshop': {
+        haveCollision: true,
+
+        interaction : prepareScroll,
+
+        sprites: [
+            'assets/tiles/cauldron.png'
+        ]
+    },
+    'book':{
+        haveCollision: true,
+
+        interaction : readBookOfRecipe,
+
+        sprites: [
+            'assets/tiles/cauldron.png'
+        ]
+    },
+    "tp":{
+        haveCollision: true,
+
+        interaction : validateQuest,
+
+        sprites: [
+            'assets/tiles/cauldron.png'
+        ]
+    },
 
     player: {
         width: 50,
