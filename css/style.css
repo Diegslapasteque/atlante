@@ -172,4 +172,13 @@ ul li{
     background: rgba(0, 0, 0, .9);
 }
 
+#quest-accepted {
+    display: none;
+    color: green;
+}
 
+#quest-button-give {
+    font-size: 1.5rem;
+    margin: 0.5em 0;
+    display: none;
+}

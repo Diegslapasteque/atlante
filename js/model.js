@@ -358,10 +358,18 @@ var M = {
     },
 
     updatePnjs() {
-        M.visiblePnjs.forEach( (pnj) => {
+        M.visiblePnjs.forEach( (pnj, pnjIndex) => {
             if(pnj.waiting === false) {
-                pnj.move(0, -1);
+                if(pnj.look === pnj.looks.LOOK_UP) {
+                    pnj.move(0, -1);
+                }
+                else if(pnj.look === pnj.looks.LOOK_DOWN) {
+                    pnj.move(0, 1);
+                }
 
+                if(pnj.y > M.GAME_HEIGHT) {
+                    M.visiblePnjs.splice(pnjIndex, 1);
+                }
                 M.tilesInteraction.forEach( (tile) => {
                     if(tile.haveCollision === true && M.handleCollision(pnj, tile) !== false) {
                         pnj.frameIndex = 0;
@@ -369,6 +377,12 @@ var M = {
                     }
                 });
             }
+        });
+    },
+
+    haveObjectRequestedInInventory(objectRequested) {
+        M.player_quests_objects.find( (questObject) => {
+            return objectRequested.name === questObject.name;
         });
     },
 
@@ -402,9 +416,18 @@ var M = {
             M.alreadyTryingToGeneratePnj = true;
             if(Math.random() < M.proba_pnj) {
                 var barNumber = 0;
-                M.visiblePnjs.forEach( (pnj) => {
-                    barNumber = Math.max(pnj.barNumber+1, barNumber);
-                });
+                var isOccupied = false;
+                do {
+                    isOccupied = false;
+                    for (let i=0; i<M.visiblePnjs.length; i++) {
+                        if(barNumber === M.visiblePnjs[i].barNumber) {
+                            isOccupied = true;
+                            barNumber++;
+                            break;
+                        }
+                    }
+                } while (isOccupied === true && barNumber < M.maxBarNumber);
+                console.log(barNumber);
                 if(barNumber >= M.maxBarNumber) {
                     return;
                 }

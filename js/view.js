@@ -145,11 +145,17 @@ var V = {
         })
     },
 
-    renderQuest(pnjName, questTitle, questContent, objectRequested, isQuestAccepted) {
+    renderQuest(pnj, pnjQuest, pnjName, questTitle, questContent, objectRequested, isQuestAccepted) {
         document.querySelector('#quest-pnj').textContent = pnjName;
         document.querySelector('#quest-title').textContent = questTitle;
         document.querySelector('#quest-content').textContent = questContent;
-        document.querySelector('#quest-requestObject').textContent = objectRequested;
+        document.querySelector('#quest-accepted').style.display = (isQuestAccepted) ? 'block' : 'none';
+        document.querySelector('#quest-button-give').style.display = 'none';
+        document.querySelector('#quest-button-give').setAttribute('disabled', 'true');
+        document.querySelector('#quest-button-give').style.display = 'none';
+        if(M.haveObjectRequestedInInventory(objectRequested)) {
+            document.querySelector('#quest-button-give').setAttribute('disabled', 'false');
+        }
         if(isQuestAccepted === true) {
             document.querySelector('#quest-buttons').style.display = 'none';
         }
@@ -157,6 +163,26 @@ var V = {
             document.querySelector('#quest-buttons').style.display = 'block';
         }
         document.querySelector('#quest-container').style.display = 'block';
+        document.querySelector('#quest-button-accept').addEventListener('mousedown', function (ev) {
+            pnjQuest.isQuestAccepted = true;
+            document.querySelector('#quest-accepted').style.display = 'block';
+            M.gameState = M.PLAYING;
+            document.querySelector('#quest-container').style.display = 'none';
+            document.querySelector('#quest-button-give').style.display = 'block';
+        });
+        document.querySelector('#quest-button-give').addEventListener('mousedown', function (ev) {
+            M.gameState = M.PLAYING;
+            document.querySelector('#quest-container').style.display = 'none';
+            pnj.look = pnj.looks.LOOK_DOWN;
+            pnj.waiting = false;
+            pnjQuest.isQuestAccomplished = true;
+        });
+        document.querySelector('#quest-button-refuse').addEventListener('mousedown', function (ev) {
+            M.gameState = M.PLAYING;
+            document.querySelector('#quest-container').style.display = 'none';
+            pnj.look = pnj.looks.LOOK_DOWN;
+            pnj.waiting = false;
+        });
         document.querySelector('#quit-quest').addEventListener('mousedown', function (ev) {
             M.gameState = M.PLAYING;
             document.querySelector('#quest-container').style.display = 'none';

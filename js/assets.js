@@ -178,7 +178,7 @@ const ASSETS = {
             'assets/tiles/book.png'
         ]
     },
-    'iron':{
+    'ferrite-rune':{
         haveCollision: true,
 
         interaction : addRessourceToInventory,
@@ -187,7 +187,7 @@ const ASSETS = {
             'assets/tiles/table-iron.png'
         ]
     },
-    'stone':{
+    'pierre-rune':{
         haveCollision: true,
 
         interaction : addRessourceToInventory,
@@ -196,34 +196,25 @@ const ASSETS = {
             'assets/tiles/table-stone.png'
         ]
     },
-    'glyph1':{
+    'divineGlyph':{
         haveCollision: true,
 
-        interaction : addRessourceToInventory,
+        interaction : prepareRune,
 
         sprites: [
             'assets/tiles/table-glyph1.png'
         ]
     },
-    'glyph2':{
+    'repairGlyph':{
         haveCollision: true,
 
-        interaction : addRessourceToInventory,
+        interaction : prepareRune,
 
         sprites: [
             'assets/tiles/table-glyph2.png'
         ]
     },
-    'glyph3':{
-        haveCollision: true,
-
-        interaction : addRessourceToInventory,
-
-        sprites: [
-            'assets/tiles/table-glyph3.png'
-        ]
-    },
-    'gold':{
+    'lingotOr-rune':{
         haveCollision: true,
 
         interaction : addRessourceToInventory,

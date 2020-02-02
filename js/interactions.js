@@ -39,6 +39,7 @@ function preparePotion() {
 }
 
 function prepareRune(type) {
+    console.log(type)
     if (JSON.stringify(RECIPES.RUNEAFFUTAGE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
         console.log('Succes');
         clearInventory();
@@ -47,11 +48,11 @@ function prepareRune(type) {
         console.log('Succes');
         clearInventory();
     }
-    else if (JSON.stringify(RECIPES.RUNEDEREPARATIONDEBIJOUX.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)) && type === 'repairGlyphe'){
+    else if (JSON.stringify(RECIPES.RUNEDEREPARATIONDEBIJOUX.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)) && type === 'repairGlyph'){
         console.log('Succes bijoux');
         clearInventory();
     }
-    else if (JSON.stringify(RECIPES.RUNEDEPROTECTIONDIVINE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)) && type === 'divineGlyphe'){
+    else if (JSON.stringify(RECIPES.RUNEDEPROTECTIONDIVINE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)) && type === 'divineGlyph'){
         console.log('Succes');
         clearInventory();
     }
@@ -120,7 +121,6 @@ function barInteraction(barNumber) {
         return;
     }
 
-    console.log(pnj.pnjInfos);
     M.gameState = M.READING;
-    V.renderQuest(pnj.pnjInfos[1].name, pnj.pnjInfos[1].actualQuests.title, pnj.pnjInfos[1].actualQuests.content, pnj.pnjInfos[1].actualQuests.objectRequested.name, pnj.pnjInfos[1].actualQuests.isQuestAccepted );
+    V.renderQuest(pnj, pnj.pnjInfos[1].actualQuests, pnj.pnjInfos[1].name, pnj.pnjInfos[1].actualQuests.title, pnj.pnjInfos[1].actualQuests.content, pnj.pnjInfos[1].actualQuests.objectRequested.name, pnj.pnjInfos[1].actualQuests.isQuestAccepted );
 }

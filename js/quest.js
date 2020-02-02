@@ -4,6 +4,7 @@ class Quest  {
         this.content = content;
         this.reward = reward;
         this.isQuestAccepted = false;
+        this.isQuestAccomplished = false;
         this.objectRequested =objectRequested;
         this.cityInfluence = cityInfluence;
     }
