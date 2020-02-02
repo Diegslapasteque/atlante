@@ -69,6 +69,8 @@ var C = {
 
         // Rendu du joueur
         V.drawAnimatedObject(M.player);
+
+        M.visiblePnjs.forEach(V.drawAnimatedObject);
     },
 
     calcObjectsToLoad() {

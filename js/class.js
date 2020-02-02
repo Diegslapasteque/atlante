@@ -1,5 +1,6 @@
 class Asset {
     constructor(type, x, y, width, height, xColli, yColli, widthColli, heightColli) {
+        this.type = type;
         this.x = Math.round(x);
         this.y = Math.round(y);
         this.width = Math.round(width);
@@ -80,7 +81,7 @@ class MoveAsset extends Asset {
     }
 }
 
-class Player extends MoveAsset {
+class Character extends MoveAsset {
     constructor(type, x, y, width, height, speed, xColli, yColli, widthColli, heightColli) {
         super(type, x, y, width, height, speed, xColli, yColli, widthColli, heightColli);
 
@@ -121,5 +122,11 @@ class Player extends MoveAsset {
         else {
             this.frameIndex = 0;
         }
+    }
+}
+
+class Player extends Character {
+    constructor(type, x, y, width, height, speed, xColli, yColli, widthColli, heightColli) {
+        super(type, x, y, width, height, speed, xColli, yColli, widthColli, heightColli);
     }
 }

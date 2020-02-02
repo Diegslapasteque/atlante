@@ -51,12 +51,13 @@ var M = {
     player: null,
     tiles: [],
     tilesInteraction: [],
-    pnj: [],
+    visiblePnjs: [],
     tile_selected: null,
     questObject:null,
     quests:null,
-    pnjs: null,
+    pnjsInfos: null,
     endDay : true,
+    pnjIndex: 0,
 
     // Objects base properties
     // Valeurs de base
@@ -70,6 +71,12 @@ var M = {
     PLAYER_WIDTH: null,
     PLAYER_HEIGHT: null,
     PLAYER_SPEED: 3,
+
+    proba_pnj: 1,
+    PNJ_SPEED: 2,
+    alreadyTryingToGeneratePnj: false,
+    maxBarNumber: 5,
+    currentCity: 'Capricol',
 
 
 // Methods
@@ -175,26 +182,26 @@ var M = {
             "PaysanPeureux" : new Quest('Un agriculteur peu motivé','B\'jour Msieur. Tout les matins j\'la flemme de t\'vailler,Vous\'riez un t\'uc pour Moi',10,M.questObject.Parchemins.Competence,15),
 
         };
-        M.pnjs = {
+        M.pnjsInfos = {
             "Capricol": {
                 //IMPORTANT PNJ
-
-                'Fastpaul': new Pnj('Fastpaul', 'Noble', null, M.quests.Marchand),
+                'Rogwald': new PnjInfos('Rogwald', 'Voleur', [M.quests.VilMalendrin], M.quests.Marchand, 'pnj1'),
+                'Fastpaul': new PnjInfos('Fastpaul', 'Noble', null, M.quests.Marchand, 'pnj2'),
 
                 //RANDOM PNJ
-                'Roywulf': new Pnj('Roywulf', 'Voleur', null, M.quests.VoleurAncien),
-                'Eallett': new Pnj('Eallett', 'Paysanne', null, M.quests.ProcheMalade),
-                'Roneal': new Pnj('Roneal', 'Petite fille', null, M.quests.Chien),
-                'Nasba': new Pnj('Nasba', 'Chasseur', null, M.quests.Chasseur),
-                'Evermit': new Pnj('Evermit', 'Soldat', null, M.quests.Combattant),
-                'Muelord': new Pnj('Muelord', 'Soldat', null, M.quests.Novice),
-                'Nadon': new Pnj('Nadon', 'Soldat', null, M.quests.CombattantPeuSoigneux),
-                'Elfvid': new Pnj('Elfvid', 'Noble', null, M.quests.NoblesseTriste),
-                'Venred': new Pnj('Venred', 'Héros', null, M.quests.Heros),
-                'Roe': new Pnj('Roe', 'Veille dame', null, M.quests.Sommeil),
-                'Retvise': new Pnj('Retvise', 'Chevalier', null, M.quests.ChevelierDeRose),
-                'Brandbard': new Pnj('Brandbard', 'Soldat', null, M.quests.SoldatSuicidaire),
-                'Rolla': new Pnj('Rolla', 'Agriculteur', null, M.quests.PaysanPeureux),
+                'Roywulf': new PnjInfos('Roywulf', 'Voleur', null, M.quests.VoleurAncien, 'pnj1'),
+                'Eallett': new PnjInfos('Eallett', 'Paysanne', null, M.quests.ProcheMalade, 'pnj2'),
+                'Roneal': new PnjInfos('Roneal', 'Petite fille', null, M.quests.Chien, 'pnj2'),
+                'Nasba': new PnjInfos('Nasba', 'Chasseur', null, M.quests.Chasseur),
+                'Evermit': new PnjInfos('Evermit', 'Soldat', null, M.quests.Combattant),
+                'Muelord': new PnjInfos('Muelord', 'Soldat', null, M.quests.Novice),
+                'Nadon': new PnjInfos('Nadon', 'Soldat', null, M.quests.CombattantPeuSoigneux),
+                'Elfvid': new PnjInfos('Elfvid', 'Noble', null, M.quests.NoblesseTriste),
+                'Venred': new PnjInfos('Venred', 'Héros', null, M.quests.Heros),
+                'Roe': new PnjInfos('Roe', 'Veille dame', null, M.quests.Sommeil),
+                'Retvise': new PnjInfos('Retvise', 'Chevalier', null, M.quests.ChevelierDeRose),
+                'Brandbard': new PnjInfos('Brandbard', 'Soldat', null, M.quests.SoldatSuicidaire),
+                'Rolla': new PnjInfos('Rolla', 'Agriculteur', null, M.quests.PaysanPeureux),
             },
         };
     },
@@ -335,7 +342,13 @@ var M = {
                 M.tile_selected = M.tilesInteraction[k];
                 if (M.space){
                     M.space = false;
-                    M.tile_selected.interaction();
+                    if(M.tile_selected.interaction.name === 'barInteraction') {
+                        var barNumber = M.tile_selected.x/M.mapTileSize - 1;
+                        M.tile_selected.interaction(barNumber);
+                    }
+                    else {
+                        M.tile_selected.interaction(M.tile_selected.type);
+                    }
                 }
             }
             if(M.tilesInteraction[k].haveCollision === true && M.handleCollision(M.player, M.tilesInteraction[k]) !== false) {
@@ -344,12 +357,64 @@ var M = {
         }
     },
 
-    spawnPnj() {
+    updatePnjs() {
+        M.visiblePnjs.forEach( (pnj) => {
+            if(pnj.waiting === false) {
+                pnj.move(0, -1);
 
+                M.tilesInteraction.forEach( (tile) => {
+                    if(tile.haveCollision === true && M.handleCollision(pnj, tile) !== false) {
+                        pnj.frameIndex = 0;
+                        pnj.waiting = true;
+                    }
+                });
+            }
+        });
+    },
+
+    spawnPnj(barNumber) {
+        var type = Object.entries(M.pnjsInfos[M.currentCity])[M.pnjIndex][1].type;
+        var y = M.GAME_HEIGHT;
+        var height = ASSETS[type].height;
+
+        var pnj = new Pnj(
+            type,
+            M.mapTileSize+M.mapTileSize*barNumber,
+            y,
+            ASSETS[type].width,
+            height,
+            M.PNJ_SPEED,
+            undefined,
+            y+height/2,
+            undefined,
+            height/2,
+            Object.entries(M.pnjsInfos[M.currentCity])[M.pnjIndex],
+            barNumber
+        );
+        pnj.look = pnj.looks.LOOK_UP;
+        M.visiblePnjs.push(pnj);
+
+        M.pnjIndex++;
     },
 
     tryToGeneratePnj() {
-
+        if(V.timer%10 === 0 && M.alreadyTryingToGeneratePnj === false) {
+            M.alreadyTryingToGeneratePnj = true;
+            if(Math.random() < M.proba_pnj) {
+                var barNumber = 0;
+                M.visiblePnjs.forEach( (pnj) => {
+                    barNumber = Math.max(pnj.barNumber+1, barNumber);
+                });
+                if(barNumber >= M.maxBarNumber) {
+                    return;
+                }
+                M.spawnPnj(barNumber);
+                M.proba_pnj = 1;
+            }
+            else {
+                M.proba_pnj+=0.1;
+            }
+        }
     },
 
     update() {
@@ -359,5 +424,6 @@ var M = {
 
         // PNJ
         M.tryToGeneratePnj();
+        M.updatePnjs();
     }
 };

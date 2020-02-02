@@ -3,6 +3,8 @@ var V = {
     canvas: null,
     context: null,
 
+    seconds: 0,
+
 
 // Methods
     init() {
@@ -18,7 +20,7 @@ var V = {
 
     initTimer(){
         document.getElementById('timer').innerHTML =
-            3 + ":" + 01;
+            `3:0`;
         V.startTimer();
     },
 
@@ -67,7 +69,7 @@ var V = {
     },
 
     drawBackground() {
-        V.context.fillStyle = "#232323";
+        V.context.fillStyle = "#3b2b3c";
         V.context.fillRect(0, 0, V.canvas.width, V.canvas.height);
     },
 
@@ -98,10 +100,12 @@ var V = {
         var timeArray = presentTime.split(/[:]+/);
         var m = timeArray[0];
         var s = V.checkSecond((timeArray[1] - 1));
-        if(s==59){m=m-1}
+        if(s===59){m=m-1}
         if(m<0){
             V.renderEndOfTHeDay(M.pnjs);
         }else{
+            V.timer = s*m;
+            M.alreadyTryingToGeneratePnj = false;
             document.getElementById('timer').innerHTML =
                 m + ":" + s;
             setTimeout(V.startTimer, 1000);
@@ -115,6 +119,4 @@ var V = {
         if (sec < 0) {sec = "59"};
         return sec;
     },
-
-
 };
