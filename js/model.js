@@ -432,7 +432,7 @@ var M = {
                     return;
                 }
                 M.spawnPnj(barNumber);
-                M.proba_pnj = 1;
+                M.proba_pnj = 0.2;
             }
             else {
                 M.proba_pnj+=0.1;
