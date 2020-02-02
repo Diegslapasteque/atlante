@@ -135,49 +135,49 @@ var M = {
         M.questObject = {
             "Potions" : {
                 'Soin': new QuestObject('Potion de soin', 1, 'Une fiole vide, une herbe médicinale', 'Soigne d\'une blessure légère'),
-                'Guerison': new QuestObject('Potion de guérison', 2, 'Une fiole vide, deux herbes médicinales , une racine de mandragore', 'Soigne d\'une maladie ou blessure grave'),
-                'Force': new QuestObject('Potion de force', 3, 'Une fiole vide, deux racines de mandragore, une plume de,phoenix ', 'Décuple la force'),
-                'Chance': new QuestObject('Potion de chance', 4, 'Une fiole vide, trois herbes médicinales, deux racines de mandragore', 'Confère une chance incroyable'),
-                'Resurection': new QuestObject('Potion de resurection', 5, 'Une fiole vide, deux herbes médicinales, deux racines de mandragore, deux plumes de phoenix ', 'Ressucite un être mort '),
+                'Guerison': new QuestObject('Potion de guérison', 2, 'Une fiole vide, deux herbes médicinales , une racine de mandragore', 'Soigne d\'une maladie ou blessure grave.'),
+                'Force': new QuestObject('Potion de force', 3, 'Une fiole vide, deux racines de mandragore, une plume de phoenix ', 'Décuple la force.'),
+                'Chance': new QuestObject('Potion de chance', 4, 'Une fiole vide, trois herbes médicinales, deux racines de mandragore', 'Confère une chance incroyable.'),
+                'Resurection': new QuestObject('Potion de resurrection', 5, 'Une fiole vide, deux herbes médicinales, deux racines de mandragore, deux plumes de phoenix ', 'Ressuscite un être mort.'),
             },
             "Runes" : {
-                'Affutage' : new QuestObject('Rune d\'affutage',1,'Une pierre , glyphe de réparation','Restaure un équipement pas encore cassé'),
-                'Reparation' : new QuestObject('Rune de répatation',2,'Une ferrite, glyphe de réparation','Répare un équipement cassé'),
-                'Bijoux' : new QuestObject('Rune de réparation des bijoux',3,'Un lingot d\'or, glyphe de réparation','Répare un cristal / bijoux cassé'),
-                'Divine' : new QuestObject('Rune de protection divine',4,'Un Lingot d\'or, glyphe divine','Répare et protège un equipement de la casse'),
+                'Affutage' : new QuestObject('Rune d\'affutage',1,'Une pierre , glyphe de réparation','Restaure un équipement pas encore cassé.'),
+                'Reparation' : new QuestObject('Rune de réparation',2,'Une ferrite, glyphe de réparation','Répare un équipement cassé.'),
+                'Bijoux' : new QuestObject('Rune de réparation des bijoux',3,'Un lingot d\'or, glyphe de réparation','Répare un cristal / bijoux cassé.'),
+                'Divine' : new QuestObject('Rune de protection divine',4,'Un Lingot d\'or, glyphe divine','Répare et protège un équipement de la casse.'),
             },
             "Parchemins" : {
-                'Sommeil' : new QuestObject('Parchemin de sommeil',1,'Un parchemin, incantation de sommeil','Permet à la cible de faire de beaux rêves'),
-                'Amour' : new QuestObject('Parchemin d\'amour',2,'Un parchemin, incantation de manipulation','Permet de rendre la cible amoureuse du lanceur'),
-                'Persuasion' : new QuestObject('Parchemin de persuasion',3,'Un parchemin, incantation de persuasion','La cible accepte TOUS provenant du lanceur'),
-                'Oublie' : new QuestObject('Parchemin d\'oublie',4,'Un parchemin, incantation de mental','La cible oublie TOUS ce que le lanceur souhaite'),
-                'Competence' : new QuestObject('Parchemin de compétence accrue',5,'Un parchemin, incantation de compétence','Augmente ou diminue un trait choisi de la cible'),
+                'Sommeil' : new QuestObject('Parchemin de sommeil',1,'Un parchemin, incantation de sommeil','Permet à la cible de faire de beaux rêves.'),
+                'Amour' : new QuestObject('Parchemin d\'amour',2,'Un parchemin, incantation de manipulation','Permet de rendre la cible amoureuse du lanceur.'),
+                'Persuasion' : new QuestObject('Parchemin de persuasion',3,'Un parchemin, incantation de persuasion','La cible accepte TOUT provenant du lanceur.'),
+                'Oublie' : new QuestObject('Parchemin d\'oublie',4,'Un parchemin, incantation de mental','La cible oublie TOUT ce que le lanceur souhaite.'),
+                'Competence' : new QuestObject('Parchemin de compétence accrue',5,'Un parchemin, incantation de compétence','Augmente ou diminue un trait choisi de la cible.'),
             }
         };
         M.quests ={
             //IMPORTANT QUESTS
             "VilMalendrin" : new Quest('Des projets de richesses','Bonjour, mage. Je suis à la recherche d\'une magie pour soulager les problèmes de sommeil sensible.',200,M.questObject.Parchemins.Sommeil,-15),
-            "VilMalendrin_2" : new Quest('Des projets de vengeance','Bon alors !!! je sais que je ne suis pas apprécié dans ce village mais ce n\'est pas une raison pour fournir des sort qui me nuisent. Vous avez intéret à me donner Un parchemin de persuasion pour que je récupère ce que ce voleur m\'a dérobé !!',500,M.questObject.Potions.Soin,-30),
-            "VilMalendrin_3" : new Quest('Des projets de fuite','Je vous remercie beaucoup !!!! maintenant je suis recherché dans tous le royaume, alors qu\'il le mérité !! Il faut que j\'efface mes traces auprès du commissaire, donnez moi ce qu\'il faut !' ,0,M.questObject.Parchemins.Oublie,50),
+            "VilMalendrin_2" : new Quest('Des projets de vengeance','Bon alors !!! Je sais que je ne suis pas apprécié dans ce village, mais ce n\'est pas une raison pour fournir des sorts qui me nuisent. Vous avez intérêt à me donner Un parchemin de persuasion pour que je récupère ce que ce voleur m\'a dérobé !!',500,M.questObject.Potions.Soin,-30),
+            "VilMalendrin_3" : new Quest('Des projets de fuite','Je vous remercie beaucoup !!!! Maintenant, je suis recherché dans tous le royaume, alors qu\'il le mérité !! Il faut que j\'efface mes traces auprès du commissaire, donnez moi ce qu\'il faut !' ,0,M.questObject.Parchemins.Oublie,50),
 
             //RANDOM QUESTS POTION
-            "Chien" : new Quest('Chien blessé','Bonjour, monsieur le magicien, pendant que je jouais avec mon chien, un méchant noble lui à donné un coup. Il a la patte cassé, je sais pas quoi faire ?   ',10,M.questObject.Potions.Soin,5),
-            "ProcheMalade" : new Quest('Chat malade','Bonjour, magicien, un de mes proche est gravement malade, et j\'aurai besoin d\'une potion pour la soigner !',30,M.questObject.Potions.Guerison,5),
-            "Combattant" : new Quest('Un combattant aguéri','Mage ! j\'ai besoin de plus de force ! VITEEEEE !!!!',5,M.questObject.Potions.Soin,15),
-            "Novice" : new Quest('Un combattant peu aguéri','Bon...Bonjour monsieur, j... je dois bientôt partir pour le champ de bataille, mais avec ma poisse, je vais surement prendre un flèche perdu et mourir. Vous avez quelque chose.',0,M.questObject.Potions.Soin,5),
-            "Chasseur" : new Quest('Un chasseur ne sachant chasser','Excusez-moi, Auriez-vous quelque-chose de très puissant, qui pourrait... par exemple... redonner la vie à quelqu\'un ?',200,M.questObject.Potions.Soin,-10),
+            "Chien" : new Quest('Chien blessé','Bonjour, Monsieur le Magicien, pendant que je jouais avec mon chien, un méchant noble lui à donné un coup. Il a la patte cassé, je ne sais pas quoi faire ?   ',10,M.questObject.Potions.Soin,5),
+            "ProcheMalade" : new Quest('Chat malade','Bonjour, magicien, un de mes proches est gravement malade, et j\'aurai besoin d\'une potion pour la soigner !',30,M.questObject.Potions.Guerison,5),
+            "Combattant" : new Quest('Un combattant aguérri','Mage ! j\'ai besoin de plus de force ! VITEEEEE !!!!',5,M.questObject.Potions.Soin,15),
+            "Novice" : new Quest('Un combattant peu aguérri','Bon...  Bonjour monsieur, j... je dois bientôt partir pour le champ de bataille, mais avec ma poisse, je vais sûrement prendre un flèche perdu et mourir. Vous avez quelque chose.',0,M.questObject.Potions.Soin,5),
+            "Chasseur" : new Quest('Un chasseur ne sachant chasser','Excusez-moi, Auriez-vous quelque chose de très puissant, qui pourrait... par exemple... redonner la vie à quelqu\'un ?',200,M.questObject.Potions.Soin,-10),
 
             //RANDOM QUESTS RUNES
-            "VoleurAncien" : new Quest('Trésor ancien','Bonjour, grand sorcier respectable. Je suis à la recherche d\'une runes permettant d\'embellir et de rendre cette ancien relique réutilisable ? ',300,M.questObject.Runes.Affutage,-20),
-            "CombattantPeuSoigneux" : new Quest('Un combattant peu soigneux','Mage !!! , Mon épée s\'est brisée !!! faites quelque chose !!!',5,M.questObject.Runes.Reparation,15),
-            "NoblesseTriste" : new Quest('Une noblesse attristé','mage... le bijoux hérité de ma défunte mère, s\'est brisé en mille morceaux... Par pitié, aidez-moi...',15,M.questObject.Runes.Bijoux,5),
-            "Heros" : new Quest('Futur Héro','Bonjour à toi grand mage, j\'ai récemment acquéri cette relique magique. Mais comme vous pouvez le voir, cette épée commence à ce briser. Je recherche donc une rune me permettant de la protéger.' ,500,M.questObject.Runes.Divine,20),
+            "VoleurAncien" : new Quest('Trésor ancien','Bonjour, grand sorcier respectable. Je suis à la recherche d\'une runes permettant d\'embellir et de rendre cette ancienne relique réutilisable ? ',300,M.questObject.Runes.Affutage,-20),
+            "CombattantPeuSoigneux" : new Quest('Un combattant peu soigneux','Mage !!! , Mon épée s\'est brisée !!! Faites quelque chose !!!',5,M.questObject.Runes.Reparation,15),
+            "NoblesseTriste" : new Quest('Une noblesse attristée','mage... le bijoux hérité de ma défunte mère, s\'est brisé en mille morceaux... Par pitié, aidez-moi...',15,M.questObject.Runes.Bijoux,5),
+            "Heros" : new Quest('Futur Héro','Bonjour à toi grand mage, j\'ai récemment obtenu cette relique magique. Mais comme vous pouvez le voir, cette épée commence à ce briser. Je recherche donc une rune me permettant de la protéger.' ,500,M.questObject.Runes.Divine,20),
 
             //RANDOM QUESTS PARCHEMIN
-            "Sommeil" : new Quest('Un sommeil reposant','Monsieur, on m\'a conseillé de venir vous voir pour mon probléme, la nuit mon esprit est torturé et je ne peux m\'endormir...',10,M.questObject.Parchemins.Sommeil,5),
-            "ChevelierDeRose" : new Quest('Roméo et Juliette','Mage !! je suis amoureux de... d\'une agricultrice, mais sa mère ne m\'accorde pas leur consentement. Auriez-vous... quelque chose pour qu\'ils m\'aiment autant que j\'aime ma dulcinée',60,M.questObject.Parchemins.Amour,5),
-            "Marchand" : new Quest('Rude négociation','Bonjour, je suis moi aussi un commerçant, et je recherche quelque chose pour m\aider durant des négociations',100,M.questObject.Parchemins.Persuasion,-10),
-            "SoldatSuicidaire" : new Quest('Douloureux souvenir','Mage ... Je veux tout oublier... oublier mes erreurs, et cette guerre !!! ',50,M.questObject.Parchemins.Oublie,-5),
+            "Sommeil" : new Quest('Un sommeil reposant','Monsieur, on m\'a conseillé de venir vous voir pour mon problème, la nuit mon esprit est torturé et je ne peux m\'endormir...',10,M.questObject.Parchemins.Sommeil,5),
+            "ChevelierDeRose" : new Quest('Roméo et Juliette','Mage !! Je suis amoureux de... d\'une agricultrice, mais sa mère ne m\'accorde pas leur consentement. Auriez-vous... quelque chose pour qu\'ils m\'aiment autant que j\'aime ma dulcinée',60,M.questObject.Parchemins.Amour,5),
+            "Marchand" : new Quest('Rude négociations','Bonjour, je suis moi aussi un commerçant, et je recherche quelque chose pour m\aider durant des négociations',100,M.questObject.Parchemins.Persuasion,-10),
+            "SoldatSuicidaire" : new Quest('Douloureux souvenirs','Mage ... Je veux tout oublier... oublier mes erreurs, et cette guerre !!! ',50,M.questObject.Parchemins.Oublie,-5),
             "PaysanPeureux" : new Quest('Un agriculteur peu motivé','B\'jour Msieur. Tout les matins j\'la flemme de t\'vailler,Vous\'riez un t\'uc pour Moi',10,M.questObject.Parchemins.Competence,15),
 
         };
