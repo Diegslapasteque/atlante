@@ -124,7 +124,8 @@ ul{
 
 ul li{
     margin : 1% 0%;
-    font-family: 'Press Start 2P';
+    font-family: 'Source Code Pro';
+
 }
 
 #timer-container{
@@ -167,4 +168,71 @@ ul li{
     background: rgba(0, 0, 0, .9);
 }
 
+#inventory-container{
+    display: block;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
 
+#inventory{
+    display: none;
+    flex-direction: column;
+    height: 896px ;
+    width: 700px;
+    margin: auto;
+    padding : 1%;
+    top : 0;
+    font-family: 'Press Start 2P';
+    color : white;
+    background: rgba(0, 0, 0, .9);
+    overflow: auto;
+}
+
+#inventory ul{
+    width : 90%;
+    margin: 3% auto;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#inventory ul li{
+    list-style: circle;
+    width : 90%;
+    margin: 1% auto;
+}
+
+#inventory-ressources, #inventory-quest-object{
+    width : 95%;
+    padding-bottom : 2%;
+}
+
+#inventory-ressources li , #inventory-quest-object li {
+    font-family: 'Source Code Pro';
+}
+
+
+#quit-inventory{
+    position: relative;
+    right: 0;
+    text-align: end;
+    color : red;
+    width : 100%;
+}
+
+#inventory{
+    display: none;
+    flex-direction: column;
+    height: 896px ;
+    width: 700px;
+    margin: auto;
+    padding : 1%;
+    top : 0;
+    font-family: 'Press Start 2P';
+    color : white;
+    background: rgba(0, 0, 0, .9);
+    overflow: auto;
+}

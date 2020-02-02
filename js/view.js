@@ -109,6 +109,46 @@ var V = {
         },4000)
     },
 
+
+    renderInventory(playerInventory, playerQuestsObjects) {
+        var inventory = document.querySelector('#inventory');
+        var invRess = document.querySelector("#inv-ress");
+        var invObj = document.querySelector("#inv-obj");
+        var allRessources ={};
+        invRess.innerHTML = "";
+        invObj.innerHTML = "";
+
+
+
+        inventory.classList.add('active');
+        Object.entries(playerInventory).forEach(ressources => {
+            if(document.querySelector("#"+ressources[1].name) === null){
+                var nb = playerInventory.filter(playerInventory => playerInventory.name == ressources[1].name).length;
+                var object = document.createElement('li')
+                var objectName = document.createElement('p');
+                objectName.setAttribute("id",ressources[1].name);
+                objectName.innerText = ressources[1].name + " x"+nb;
+                object.appendChild(objectName);
+                invRess.appendChild(object);
+            }
+        });
+
+        Object.entries(playerQuestsObjects).forEach(questObject => {
+            var object = document.createElement('li')
+            var objectName = document.createElement('p');
+            objectName.setAttribute("id",questObject[1].name);
+            objectName.innerText = questObject[1].name;
+            object.appendChild(objectName);
+            invObj.appendChild(object);
+
+        });
+
+        document.querySelector('#quit-inventory').style.cursor = "pointer";
+        document.querySelector('#quit-inventory').addEventListener('click',function(event){
+            inventory.classList.remove('active');
+        })
+    },
+
     renderBook(objects) {
         var recipies = document.querySelector('#book');
         var potionRecipies = document.querySelector("#Potions-recipes");
@@ -149,7 +189,7 @@ var V = {
         var timeArray = presentTime.split(/[:]+/);
         var m = timeArray[0];
         var s = V.checkSecond((timeArray[1] - 1));
-        if(s===59){m=m-1}
+        if(s==59){m=m-1}
         if(m<0){
             V.renderEndOfTHeDay(M.pnjs);
         }else{
@@ -166,4 +206,5 @@ var V = {
         if (sec < 0) {sec = "59"};
         return sec;
     },
+
 };
