@@ -38,12 +38,13 @@ var C = {
                 break;
 
             case M.PLAYING:
+            case M.READING:
                 M.update();
                 C.render();
                 break;
 
             case M.OVER:
-                V.renderEndOfTHeDay(M.pnjs);
+                V.renderEndOfTHeDay(M.pnjsInfos);
                 cancelAnimationFrame(M.gameAnimationFrame);
                 break;
         }

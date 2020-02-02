@@ -86,6 +86,7 @@ function addRessourceToInventory(type) {
 }
 
 function readBookOfRecipe(){
+    M.gameState = M.READING;
     V.renderBook(M.questObject);
 }
 
@@ -94,5 +95,14 @@ function validateQuest(){
 }
 
 function barInteraction(barNumber) {
-    console.log(barNumber);
+    var pnj = M.visiblePnjs.find( (pnj) => {
+        return pnj.barNumber === barNumber && pnj.waiting === true;
+    });
+    if(typeof pnj === 'undefined') {
+        return;
+    }
+
+    console.log(pnj.pnjInfos);
+    M.gameState = M.READING;
+    V.renderQuest(pnj.pnjInfos[1].name, pnj.pnjInfos[1].actualQuests.title, pnj.pnjInfos[1].actualQuests.content, pnj.pnjInfos[1].actualQuests.objectRequested.name, pnj.pnjInfos[1].actualQuests.isQuestAccepted );
 }

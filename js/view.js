@@ -20,7 +20,7 @@ var V = {
 
     initTimer(){
         document.getElementById('timer').innerHTML =
-            `3:01`;
+            `3:03`;
         V.startTimer();
     },
 
@@ -81,7 +81,7 @@ var V = {
         var stats = document.querySelector('#end-of-the-day');
         document.querySelector("#quests").innerHTML = "";
         stats.classList.add('active');
-        Object.entries(pnjs.Capricol).forEach(pnj => {
+        Object.entries(pnjs[M.currentCity]).forEach(pnj => {
             var quest = document.createElement('li');
             if(pnj[1].actualQuests.isQuestAccomplished){
                 quest.style.color = "green";
@@ -106,6 +106,7 @@ var V = {
     },
 
     renderBook(objects) {
+        var bookContainer = document.querySelector('#book-container');
         var recipies = document.querySelector('#book');
         var potionRecipies = document.querySelector("#Potions-recipes");
         var runesRecipies = document.querySelector("#Runes-recipes");
@@ -114,7 +115,7 @@ var V = {
         runesRecipies.innerHTML = "";
         scrollsRecipies.innerHTML = "";
 
-        recipies.classList.add('active');
+        bookContainer.classList.add('active');
         Object.entries(objects).forEach(recipiestype => {
             var objectType = document.querySelector("#"+recipiestype[0]+"-recipes");
             Object.entries(recipiestype[1]).forEach(recipe => {
@@ -133,19 +134,37 @@ var V = {
 
         });
         document.querySelector('#quit-book').addEventListener('click',function(event){
-            recipies.classList.remove('active');
+            bookContainer.classList.remove('active');
+            M.gameState = M.PLAYING;
         })
     },
 
+    renderQuest(pnjName, questTitle, questContent, objectRequested, isQuestAccepted) {
+        document.querySelector('#quest-pnj').textContent = pnjName;
+        document.querySelector('#quest-title').textContent = questTitle;
+        document.querySelector('#quest-content').textContent = questContent;
+        document.querySelector('#quest-requestObject').textContent = objectRequested;
+        if(isQuestAccepted === true) {
+            document.querySelector('#quest-buttons').style.display = 'none';
+        }
+        else {
+            document.querySelector('#quest-buttons').style.display = 'block';
+        }
+        document.querySelector('#quest-container').style.display = 'block';
+        document.querySelector('#quit-quest').addEventListener('mousedown', function (ev) {
+            M.gameState = M.PLAYING;
+            document.querySelector('#quest-container').style.display = 'none';
+        });
+    },
 
     startTimer() {
         var presentTime = document.getElementById('timer').innerHTML;
         var timeArray = presentTime.split(/[:]+/);
         var m = timeArray[0];
         var s = V.checkSecond((timeArray[1] - 1));
-        if(s===59){m=m-1}
+        if(s==59){m=m-1}
         if(m<0){
-            V.renderEndOfTHeDay(M.pnjs);
+            V.renderEndOfTHeDay(M.pnjsInfos);
         }else{
             V.timer = s*m;
             M.alreadyTryingToGeneratePnj = false;

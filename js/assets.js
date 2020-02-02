@@ -37,6 +37,7 @@ const ASSETS = {
     },
     5: {
         haveCollision: true,
+        interaction: clearInventory,
         sprites: [
             'assets/tiles/tableTrash.png'
         ]
@@ -156,7 +157,7 @@ const ASSETS = {
         interaction : prepareScroll,
 
         sprites: [
-            'assets/tiles/cauldron.png'
+            'assets/tiles/table-scroll.png'
         ]
     },
     'RuneWorkshop': {
@@ -174,18 +175,64 @@ const ASSETS = {
         interaction : readBookOfRecipe,
 
         sprites: [
-            'assets/tiles/cauldron.png'
+            'assets/tiles/book.png'
         ]
     },
-    "tp":{
+    'iron':{
         haveCollision: true,
 
-        interaction : validateQuest,
+        interaction : addRessourceToInventory,
 
         sprites: [
-            'assets/tiles/cauldron.png'
+            'assets/tiles/table-iron.png'
         ]
     },
+    'stone':{
+        haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
+        sprites: [
+            'assets/tiles/table-stone.png'
+        ]
+    },
+    'glyph1':{
+        haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
+        sprites: [
+            'assets/tiles/table-glyph1.png'
+        ]
+    },
+    'glyph2':{
+        haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
+        sprites: [
+            'assets/tiles/table-glyph2.png'
+        ]
+    },
+    'glyph3':{
+        haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
+        sprites: [
+            'assets/tiles/table-glyph3.png'
+        ]
+    },
+    'gold':{
+        haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
+        sprites: [
+            'assets/tiles/table-gold.png'
+        ]
+    },
+
 
     player: {
         width: 50,
@@ -253,6 +300,43 @@ const ASSETS = {
             ]
         }
     },
+    pnj3: {
+        width: 50,
+        height: 100,
+        sprites: {
+            up: [
+                'assets/pnj3/up/2.png',
+                'assets/pnj3/up/1.png',
+                'assets/pnj3/up/2.png',
+                'assets/pnj3/up/3.png'
+            ],
+            down: [
+                'assets/pnj3/down/2.png',
+                'assets/pnj3/down/1.png',
+                'assets/pnj3/down/2.png',
+                'assets/pnj3/down/3.png'
+            ]
+        }
+    },
+    pnj4: {
+        width: 50,
+        height: 100,
+        sprites: {
+            up: [
+                'assets/pnj4/up/2.png',
+                'assets/pnj4/up/1.png',
+                'assets/pnj4/up/2.png',
+                'assets/pnj4/up/3.png'
+            ],
+            down: [
+                'assets/pnj4/down/2.png',
+                'assets/pnj4/down/1.png',
+                'assets/pnj4/down/2.png',
+                'assets/pnj4/down/3.png'
+            ]
+        }
+    },
+
     background: {
         sprites: [
             'assets/background.jpg'

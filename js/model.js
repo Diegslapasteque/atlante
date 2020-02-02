@@ -20,6 +20,7 @@ var M = {
     MENU: 2,
     PLAYING: 3,
     OVER: 4,
+    READING: 5,
 
     // Sons
     soundMuted: false,
@@ -182,19 +183,20 @@ var M = {
         };
         M.pnjsInfos = {
             "Capricol": {
+                'Roywulf': new PnjInfos('Roywulf', 'Voleur', null, M.quests.VoleurAncien, 'pnj4'),
+                'Elfvid': new PnjInfos('Elfvid', 'Noble', null, M.quests.NoblesseTriste, 'pnj2'),
+
                 //IMPORTANT PNJ
-                'Rogwald': new PnjInfos('Rogwald', 'Voleur', [M.quests.VilMalendrin], M.quests.Marchand, 'pnj1'),
-                'Fastpaul': new PnjInfos('Fastpaul', 'Noble', null, M.quests.Marchand, 'pnj2'),
+                'Rogwald': new PnjInfos('Rogwald', 'Voleur', [M.quests.VilMalendrin,M.quests.VilMalendrin_3], M.quests.VilMalendrin, 'pnj1'),
+                'Fastpaul': new PnjInfos('Fastpaul', 'Noble', [M.quests.Marchand,M.quests.VilMalendrin_2], M.quests.Marchand, 'pnj2'),
 
                 //RANDOM PNJ
-                'Roywulf': new PnjInfos('Roywulf', 'Voleur', null, M.quests.VoleurAncien, 'pnj1'),
-                'Eallett': new PnjInfos('Eallett', 'Paysanne', null, M.quests.ProcheMalade, 'pnj2'),
+                'Eallett': new PnjInfos('Eallett', 'Paysanne', null, M.quests.ProcheMalade, 'pnj3'),
                 'Roneal': new PnjInfos('Roneal', 'Petite fille', null, M.quests.Chien, 'pnj2'),
                 'Nasba': new PnjInfos('Nasba', 'Chasseur', null, M.quests.Chasseur),
                 'Evermit': new PnjInfos('Evermit', 'Soldat', null, M.quests.Combattant),
                 'Muelord': new PnjInfos('Muelord', 'Soldat', null, M.quests.Novice),
                 'Nadon': new PnjInfos('Nadon', 'Soldat', null, M.quests.CombattantPeuSoigneux),
-                'Elfvid': new PnjInfos('Elfvid', 'Noble', null, M.quests.NoblesseTriste),
                 'Venred': new PnjInfos('Venred', 'Héros', null, M.quests.Heros),
                 'Roe': new PnjInfos('Roe', 'Veille dame', null, M.quests.Sommeil),
                 'Retvise': new PnjInfos('Retvise', 'Chevalier', null, M.quests.ChevelierDeRose),
@@ -417,8 +419,10 @@ var M = {
 
     update() {
         // Player
-        M.updatePlayerPosition();
-        M.playerCollision();
+        if(M.gameState !== M.READING) {
+            M.updatePlayerPosition();
+            M.playerCollision();
+        }
 
         // PNJ
         M.tryToGeneratePnj();

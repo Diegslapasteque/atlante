@@ -9,7 +9,9 @@ class PnjInfos {
         this.type = type;
     }
 
-    decreaseTimeToWait(){this.timeToWait -= 1;}
+    decreaseTimeToWait() {
+        this.timeToWait -= 1;
+    }
 }
 
 class Pnj extends Character {
