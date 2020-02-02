@@ -104,9 +104,6 @@ function prepareScroll() {
     }else {
         V.renderErrorRecipe('Votre inventaire ne vous permet pas de fabriquer un parchemin');
     }
-    else {
-        V.renderErrorRecipe('Votre inventaire ne vous permet pas de fabriquer un parchemin');
-    }
 }
 
 function addRessourceToInventory(type) {
