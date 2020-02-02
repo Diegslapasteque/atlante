@@ -96,6 +96,13 @@ var V = {
         })
     },
 
+    renderErrorRecipe(msg){
+        document.querySelector('#recipe-info').innerHTML = msg;
+        setTimeout(function () {
+            document.querySelector('#recipe-info').innerHTML = "";
+        },2000)
+    },
+
     renderBook(objects) {
         var recipies = document.querySelector('#book');
         var potionRecipies = document.querySelector("#Potions-recipes");

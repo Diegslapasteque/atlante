@@ -7,7 +7,7 @@ function tri(a,b)
 
 function preparePotion() {
     if(!M.player_inventory.find(function (e) {return e.name == 'fioleVide';})){
-        console.log('nofiole');
+        V.renderErrorRecipe('Il vous manque une fiole');
         return;
     }
 
@@ -48,7 +48,7 @@ function clearInventory(){
 
 function prepareScroll() {
     if(!M.player_inventory.find(function (e) {return e.name == 'parchemin';})){
-        console.log('noscroll');
+        V.renderErrorRecipe('Il vous manque un parchemin');
         return;
     }
 
