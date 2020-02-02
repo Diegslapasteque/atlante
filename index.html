@@ -37,21 +37,25 @@
         <p id="influence"></p>
 </div>
 
-<div id="quest-container">
-    <div id="quest">
-        <span id="quit-quest">X</span>
-        <span id="quest-pnj"></span>
-        <h2 id="quest-title"></h2>
+<template id="quest-template">
+    <div class="quest">
+        <span class="quit-quest">X</span>
+        <span class="quest-pnj"></span>
+        <h2 class="quest-title"></h2>
         <br>
-        <p id="quest-content"></p>
+        <p class="quest-content"></p>
         <br>
-        <p id="quest-accepted">Quête accepté!</p>
-        <div id="quest-buttons">
-            <button id="quest-button-accept">Accepter</button>
-            <button id="quest-button-refuse">Refuser</button>
+        <p class="quest-accepted">Quête accepté!</p>
+        <div class="quest-buttons">
+            <button class="quest-button-accept">Accepter</button>
+            <button class="quest-button-refuse">Refuser</button>
         </div>
-        <button id="quest-button-give">Donner l'objet</button>
+        <button class="quest-button-give">Donner l'objet</button>
     </div>
+</template>
+
+<div id="quest-container">
+
 </div>
 
 <div id="inventory-container">
@@ -78,15 +82,114 @@
         <br>
         <span id="potions">Potions :</span>
         <ul id="Potions-recipes">
+            <li>
+                <h4>Potion de soin</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/potionEmpty.png"><img src="assets/ingredients/plant.png">
+                </div>
+                <p>Soigne une bléssure légère</p>
+            </li>
+            <li>
+                <h4>Potion de guerison</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/potionEmpty.png"><img src="assets/ingredients/plant.png"> <p>x2</p> <img src="assets/ingredients/mandragor.png">
+                </div>
+                <p>Soigne d'une maladie ou blessure grave</p>
+            </li>
+            <li>
+                <h4>Potion de force</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/potionEmpty.png"><img src="assets/ingredients/mandragor.png"><p>x2</p> <img src="assets/ingredients/phoenix.png">
+                </div>
+                <p>Décuple la force</p>
+            </li>
+            <li>
+                <h4>Potion de chance</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/potionEmpty.png"><img src="assets/ingredients/plant.png"> <p>x3</p><img src="assets/ingredients/mandragor.png"><p>x2</p>
+                </div>
+                <p>Confère une chance incroyable</p>
+            </li>
+            <li>
+                <h4>Potion de resurection</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/potionEmpty.png"><img src="assets/ingredients/plant.png"> <p>x2</p><img src="assets/ingredients/mandragor.png"><p>x2</p><img src="assets/ingredients/phoenix.png"><p>x2</p>
+                </div>
+                <p>Ressucite un être mort</p>
+            </li>
         </ul>
         <span id="runes">Runes :</span>
         <ul id="Runes-recipes">
+            <li>
+                <h4>Affutage</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/stone.png"><img src="assets/ingredients/rune-repere.png">
+                </div>
+                <p> Restaure un équipement pas encore cassé</p>
+            </li>
+            <li>
+                <h4>Reparation</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/iron.png"><img src="assets/ingredients/rune-repere.png">
+                </div>
+                <p>Répare un équipement cassé</p>
+            </li>
+            <li>
+                <h4>Bijoux</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/gold.png"><img src="assets/ingredients/rune-repere.png">
+                </div>
+                <p>Répare un cristal / bijoux précieux cassé</p>
+            </li>
+            <li>
+                <h4>Rune Divine</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/gold.png"><img src="assets/ingredients/rune-divine.png">
+                </div>
+                <p>Répare et protège un equipement de la casse</p>
+            </li>
         </ul>
         <span id="scrolls">Parchemins :</span>
         <ul id="Parchemins-recipes">
+            <li>
+                <h4>Sommeil</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/scroll.png"><img src="assets/ingredients/ink-sommeil.png">
+                </div>
+                <p>Permet à la cible de faire de beaux rêves</p>
+            </li>
+            <li>
+                <h4>Amour</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/scroll.png"><img src="assets/ingredients/ink-manipulation.png">
+                </div>
+                <p>Permet de rendre la cible amoureuse du lanceur</p>
+            </li>
+            <li>
+                <h4>Persuasion</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/scroll.png"><img src="assets/ingredients/ink-persuasion.png">
+                </div>
+                <p>La cible accepte TOUS provenant du lanceur</p>
+            </li>
+            <li>
+                <h4>Oublie</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/scroll.png"><img src="assets/ingredients/ink-mental.png">
+                </div>
+                <p>La cible oublie TOUS ce que le lanceur souhaite</p>
+            </li>
+            <li>
+                <h4>Competence</h4>
+                <div class="d-flex f-row">
+                    <img src="assets/ingredients/scroll.png"><img src="assets/ingredients/ink-competence.png">
+                </div>
+                <p>Augmente ou diminue un trait choisi de la cible</p>
+            </li>
         </ul>
     </div>
 </div>
+
 
 <!-- Librairies -->
 <script src="lib/howler.min.js"></script>

@@ -88,6 +88,13 @@ var C = {
         V.renderCityInfluence(M.cityInfluence);
     },
 
+    refuseQuest(pnj, questTag) {
+        M.gameState = M.PLAYING;
+        questTag.querySelector('#quest-container').style.display = 'none';
+        pnj.look = pnj.looks.LOOK_DOWN;
+        pnj.waiting = false;
+    },
+
     objectLoaded() {
         M.objectsLoaded++;
         if(M.objectsLoaded === M.objectsToLoad) {

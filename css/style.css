@@ -34,6 +34,10 @@ h2 {
     height: 5vh;
 }
 
+#quest-container {
+    display: block;
+}
+
 #city-influence-container{
     display: block;
     position: absolute;
@@ -58,7 +62,7 @@ h2 {
     height: 20px;
 }
 
-#book, #quest {
+#book, .quest {
     flex-direction: column;
     height: 896px ;
     width: 700px;
@@ -96,7 +100,7 @@ h2 {
     text-align: center;
 }
 
-#quit-book, #quit-quest {
+#quit-book, .quit-quest {
     position: relative;
     right: 0;
     text-align: end;
@@ -173,7 +177,7 @@ ul li{
     background: rgba(0, 0, 0, .9);
 }
 
-#quest-accepted {
+.quest-accepted {
     display: none;
     color: green;
 }
@@ -233,7 +237,7 @@ ul li{
     width : 100%;
     display: block;
 }
-#quest-button-give {
+.quest-button-give {
     font-size: 1.5rem;
     margin: 0.5em 0;
     display: none;
@@ -251,4 +255,12 @@ ul li{
     color : white;
     background: rgba(0, 0, 0, .9);
     overflow: auto;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.f-row{
+    flex-direction: row;
 }

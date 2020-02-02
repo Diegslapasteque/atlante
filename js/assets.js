@@ -327,6 +327,24 @@ const ASSETS = {
             ]
         }
     },
+    pnj5: {
+        width: 50,
+        height: 100,
+        sprites: {
+            up: [
+                'assets/pnj5/up/2.png',
+                'assets/pnj5/up/1.png',
+                'assets/pnj5/up/2.png',
+                'assets/pnj5/up/3.png'
+            ],
+            down: [
+                'assets/pnj5/down/2.png',
+                'assets/pnj5/down/1.png',
+                'assets/pnj5/down/2.png',
+                'assets/pnj5/down/3.png'
+            ]
+        }
+    },
 
     background: {
         sprites: [

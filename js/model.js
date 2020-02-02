@@ -184,7 +184,7 @@ var M = {
         M.pnjsInfos = {
             "Capricol": {
                 'Roywulf': new PnjInfos('Roywulf', 'Voleur', null, M.quests.VoleurAncien, 'pnj4'),
-                'Elfvid': new PnjInfos('Elfvid', 'Noble', null, M.quests.NoblesseTriste, 'pnj2'),
+                'Elfvid': new PnjInfos('Elfvid', 'Noble', null, M.quests.NoblesseTriste, 'pnj5'),
 
                 //IMPORTANT PNJ
                 'Rogwald': new PnjInfos('Rogwald', 'Voleur', [M.quests.VilMalendrin,M.quests.VilMalendrin_3], M.quests.VilMalendrin, 'pnj1'),
@@ -192,16 +192,16 @@ var M = {
 
                 //RANDOM PNJ
                 'Eallett': new PnjInfos('Eallett', 'Paysanne', null, M.quests.ProcheMalade, 'pnj3'),
-                'Roneal': new PnjInfos('Roneal', 'Petite fille', null, M.quests.Chien, 'pnj2'),
-                'Nasba': new PnjInfos('Nasba', 'Chasseur', null, M.quests.Chasseur),
-                'Evermit': new PnjInfos('Evermit', 'Soldat', null, M.quests.Combattant),
-                'Muelord': new PnjInfos('Muelord', 'Soldat', null, M.quests.Novice),
-                'Nadon': new PnjInfos('Nadon', 'Soldat', null, M.quests.CombattantPeuSoigneux),
-                'Venred': new PnjInfos('Venred', 'Héros', null, M.quests.Heros),
-                'Roe': new PnjInfos('Roe', 'Veille dame', null, M.quests.Sommeil),
-                'Retvise': new PnjInfos('Retvise', 'Chevalier', null, M.quests.ChevelierDeRose),
-                'Brandbard': new PnjInfos('Brandbard', 'Soldat', null, M.quests.SoldatSuicidaire),
-                'Rolla': new PnjInfos('Rolla', 'Agriculteur', null, M.quests.PaysanPeureux),
+                'Roneal': new PnjInfos('Roneal', 'Petite fille', null, M.quests.Chien, 'pnj1'),
+                'Nasba': new PnjInfos('Nasba', 'Chasseur', null, M.quests.Chasseur, 'pnj4'),
+                'Evermit': new PnjInfos('Evermit', 'Soldat', null, M.quests.Combattant, 'pnj2'),
+                'Muelord': new PnjInfos('Muelord', 'Soldat', null, M.quests.Novice, 'pnj1'),
+                'Nadon': new PnjInfos('Nadon', 'Soldat', null, M.quests.CombattantPeuSoigneux, 'pnj5'),
+                'Venred': new PnjInfos('Venred', 'Héros', null, M.quests.Heros, 'pnj4'),
+                'Roe': new PnjInfos('Roe', 'Veille dame', null, M.quests.Sommeil, 'pnj3'),
+                'Retvise': new PnjInfos('Retvise', 'Chevalier', null, M.quests.ChevelierDeRose, 'pnj1'),
+                'Brandbard': new PnjInfos('Brandbard', 'Soldat', null, M.quests.SoldatSuicidaire, 'pnj2'),
+                'Rolla': new PnjInfos('Rolla', 'Agriculteur', null, M.quests.PaysanPeureux, 'pnj5'),
             },
         };
     },

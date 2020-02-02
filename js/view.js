@@ -151,84 +151,67 @@ var V = {
 
     renderBook(objects) {
         var bookContainer = document.querySelector('#book-container');
-        var recipies = document.querySelector('#book');
-        var potionRecipies = document.querySelector("#Potions-recipes");
-        var runesRecipies = document.querySelector("#Runes-recipes");
-        var scrollsRecipies = document.querySelector("#Parchemins-recipes");
-        potionRecipies.innerHTML = "";
-        runesRecipies.innerHTML = "";
-        scrollsRecipies.innerHTML = "";
 
         bookContainer.classList.add('active');
-        Object.entries(objects).forEach(recipiestype => {
-            var objectType = document.querySelector("#"+recipiestype[0]+"-recipes");
-            Object.entries(recipiestype[1]).forEach(recipe => {
-                var object = document.createElement('li')
-                var objectTitle = document.createElement('p');
-                objectTitle.innerText = recipe[0]+" => \n"
-                objectTitle.style.color = "yellow";
-                var objectRecipe = document.createElement('p');
-                objectRecipe.innerText = recipe[1].recipe;
-                var objectEffect = document.createElement('p');
-                objectEffect.innerText = recipe[1].effect;
-                object.appendChild(objectTitle);
-                object.appendChild(objectRecipe);
-                object.appendChild(objectEffect);
-                objectType.appendChild(object);
-            });
-
-        });
         document.querySelector('#quit-book').style.cursor = "pointer";
         document.querySelector('#quit-book').addEventListener('click',function(event){
-            console.log('hello')
             bookContainer.classList.remove('active');
             M.gameState = M.PLAYING;
         })
     },
 
     renderQuest(pnj, pnjQuest, pnjName, questTitle, questContent, objectRequested, isQuestAccepted) {
-        document.querySelector('#quest-pnj').textContent = pnjName;
-        document.querySelector('#quest-title').textContent = questTitle;
-        document.querySelector('#quest-content').textContent = questContent;
-        document.querySelector('#quest-accepted').style.display = (isQuestAccepted) ? 'block' : 'none';
-        if(M.haveObjectRequestedInInventory(objectRequested)) {
-            document.querySelector('#quest-button-give').style.display = 'block'
+        var questContainer = document.importNode(document.querySelector('#quest-template').content, true);
+        questContainer.querySelector('.quest-pnj').textContent = pnjName;
+        questContainer.querySelector('.quest-title').textContent = questTitle;
+        questContainer.querySelector('.quest-content').textContent = questContent;
+        questContainer.querySelector('.quest-accepted').style.display = (isQuestAccepted) ? 'block' : 'none';
+        if(M.haveObjectRequestedInInventory(objectRequested) && isQuestAccepted) {
+            questContainer.querySelector('.quest-button-give').style.display = 'block'
         }
         else {
-            document.querySelector('#quest-button-give').style.display = 'none';
+            questContainer.querySelector('.quest-button-give').style.display = 'none';
         }
 
         if(isQuestAccepted === true) {
-            document.querySelector('#quest-buttons').style.display = 'none';
+            questContainer.querySelector('.quest-buttons').style.display = 'none';
         }
         else {
-            document.querySelector('#quest-buttons').style.display = 'block';
+            questContainer.querySelector('.quest-buttons').style.display = 'block';
         }
-        document.querySelector('#quest-container').style.display = 'block';
-        document.querySelector('#quest-button-accept').addEventListener('mousedown', function (ev) {
+        questContainer.querySelector('.quest').style.display = 'block';
+        document.querySelector('#quest-container').appendChild(questContainer);
+        questContainer = document.querySelector('#quest-container').lastElementChild;
+
+        console.log(questContainer);
+        questContainer.querySelector('.quest-button-accept').addEventListener('mousedown', function (ev) {
             pnjQuest.isQuestAccepted = true;
-            document.querySelector('#quest-accepted').style.display = 'block';
+            questContainer.querySelector('.quest-accepted').style.display = 'block';
             M.gameState = M.PLAYING;
-            document.querySelector('#quest-container').style.display = 'none';
-            document.querySelector('#quest-button-give').style.display = 'block';
+            questContainer.style.display = 'none';
+            questContainer.querySelector('.quest-button-give').style.display = 'block';
         });
-        document.querySelector('#quest-button-give').addEventListener('mousedown', function (ev) {
+
+        questContainer.querySelector('.quest-button-give').addEventListener('mousedown', function (ev) {
             M.gameState = M.PLAYING;
-            document.querySelector('#quest-container').style.display = 'none';
+            questContainer.style.display = 'none';
             pnj.look = pnj.looks.LOOK_DOWN;
             pnj.waiting = false;
             pnjQuest.isQuestAccomplished = true;
         });
-        document.querySelector('#quest-button-refuse').addEventListener('mousedown', function (ev) {
+
+        questContainer.querySelector('.quest-button-refuse').addEventListener('mousedown', function (ev) {
             M.gameState = M.PLAYING;
-            document.querySelector('#quest-container').style.display = 'none';
+            questContainer.style.display = 'none';
             pnj.look = pnj.looks.LOOK_DOWN;
             pnj.waiting = false;
         });
-        document.querySelector('#quit-quest').addEventListener('mousedown', function (ev) {
+
+        questContainer.querySelector('.quit-quest').addEventListener('mousedown', function (ev) {
             M.gameState = M.PLAYING;
-            document.querySelector('#quest-container').style.display = 'none';
+            questContainer.style.display = 'none';
         });
+
     },
 
     startTimer() {
