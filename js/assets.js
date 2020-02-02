@@ -117,6 +117,15 @@ const ASSETS = {
             'assets/tiles/cauldron.png'
         ]
     },
+    "tp":{
+        haveCollision: true,
+
+        interaction : validateQuest,
+
+        sprites: [
+            'assets/tiles/cauldron.png'
+        ]
+    },
 
     player: {
         width: 50,

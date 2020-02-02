@@ -3,7 +3,7 @@ class Quest  {
         this.title = title;
         this.content = content;
         this.reward = reward;
-        this.isQuestAccomplished = false;
+        this.isQuestAccomplished = true;
         this.objectRequested =objectRequested;
         this.cityInfluence = cityInfluence;
     }

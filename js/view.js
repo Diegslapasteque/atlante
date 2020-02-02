@@ -71,6 +71,10 @@ var V = {
         V.context.fillRect(0, 0, V.canvas.width, V.canvas.height);
     },
 
+    renderCityInfluence(influence) {
+        document.querySelector("#influence").style.width = influence+"%";
+    },
+
     renderEndOfTHeDay(pnjs) {
         var stats = document.querySelector('#end-of-the-day');
         document.querySelector("#quests").innerHTML = "";
@@ -138,8 +142,6 @@ var V = {
                 m + ":" + s;
             setTimeout(V.startTimer, 1000);
         }
-
-
     },
 
      checkSecond(sec) {
@@ -147,6 +149,7 @@ var V = {
         if (sec < 0) {sec = "59"};
         return sec;
     },
+
 
 
 };

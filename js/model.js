@@ -57,6 +57,7 @@ var M = {
     quests:null,
     pnjs: null,
     endDay : true,
+    cityInfluence:0,
 
     // Objects base properties
     // Valeurs de base

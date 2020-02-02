@@ -29,6 +29,30 @@
     height: 5vh;
 }
 
+#city-influence-container{
+    display: block;
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+
+#city-influence{
+    display: block;
+    margin: 1% auto;
+    width : 900px;
+    display: flex;
+    justify-content: right;
+}
+
+#influence{
+    display: block;
+    background: yellow;
+    width : 0;
+    height: 20px;
+}
+
 #book{
     display: none;
     flex-direction: column;
