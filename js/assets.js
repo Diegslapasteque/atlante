@@ -110,6 +110,33 @@ const ASSETS = {
             'assets/tiles/MurHaut02.png'
         ]
     },
+    'fioleVide-potion': {
+        haveCollision: true,
+
+        interaction : addRessourceToInventory,
+
+        sprites: [
+            'assets/tiles/PlancheCauldron.png'
+        ]
+    },
+    'ScrollWorkshop': {
+        haveCollision: true,
+
+        interaction : prepareScroll,
+
+        sprites: [
+            'assets/tiles/PlancheCauldron.png'
+        ]
+    },
+    'RuneWorkshop': {
+        haveCollision: true,
+
+        interaction : prepareScroll,
+
+        sprites: [
+            'assets/tiles/PlancheCauldron.png'
+        ]
+    },
 
     player: {
         width: 50,
