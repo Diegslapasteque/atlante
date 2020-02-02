@@ -198,6 +198,7 @@ var V = {
             pnj.look = pnj.looks.LOOK_DOWN;
             pnj.waiting = false;
             pnjQuest.isQuestAccomplished = true;
+            M.player_quests_objects.splice(M.player_quests_objects.indexOf(pnjQuest.objectRequested),1);
         });
 
         questContainer.querySelector('.quest-button-refuse').addEventListener('mousedown', function (ev) {
