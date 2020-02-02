@@ -91,6 +91,8 @@ var V = {
             quest.innerText = pnj[1].actualQuests.title;
             document.querySelector("#quests").appendChild(quest)
         });
+
+        document.querySelector('#next-day').style.cursor = "pointer";
         document.querySelector('#next-day').addEventListener('click',function(event){
             stats.classList.remove('active');
             V.initTimer();
@@ -99,10 +101,12 @@ var V = {
     },
 
     renderErrorRecipe(msg){
-        document.querySelector('#recipe-info').innerHTML = msg;
+        var message = document.querySelector('#recipe-info');
+        message.innerHTML = msg;
+        message.classList.add('active');
         setTimeout(function () {
-            document.querySelector('#recipe-info').innerHTML = "";
-        },2000)
+            message.classList.remove('active');
+        },4000)
     },
 
     renderBook(objects) {
@@ -122,6 +126,7 @@ var V = {
                 var object = document.createElement('li')
                 var objectTitle = document.createElement('p');
                 objectTitle.innerText = recipe[0]+" => \n"
+                objectTitle.style.color = "yellow";
                 var objectRecipe = document.createElement('p');
                 objectRecipe.innerText = recipe[1].recipe;
                 var objectEffect = document.createElement('p');
@@ -133,6 +138,7 @@ var V = {
             });
 
         });
+        document.querySelector('#quit-book').style.cursor = "pointer";
         document.querySelector('#quit-book').addEventListener('click',function(event){
             bookContainer.classList.remove('active');
             M.gameState = M.PLAYING;

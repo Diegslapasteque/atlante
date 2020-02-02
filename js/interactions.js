@@ -39,7 +39,25 @@ function preparePotion() {
 }
 
 function prepareRune(type) {
-    console.log(type);
+    if (JSON.stringify(RECIPES.RUNEAFFUTAGE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
+        console.log('Succes');
+        clearInventory();
+    }
+    else if (JSON.stringify(RECIPES.RUNEDEREPARATION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
+        console.log('Succes');
+        clearInventory();
+    }
+    else if (JSON.stringify(RECIPES.RUNEDEREPARATIONDEBIJOUX.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)) && type === 'repairGlyphe'){
+        console.log('Succes bijoux');
+        clearInventory();
+    }
+    else if (JSON.stringify(RECIPES.RUNEDEPROTECTIONDIVINE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)) && type === 'divineGlyphe'){
+        console.log('Succes');
+        clearInventory();
+    }
+    else {
+        V.renderErrorRecipe('Votre inventaire ne vous permet pas de fabriquer une rune');
+    }
 }
 
 function clearInventory(){
