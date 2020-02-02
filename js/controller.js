@@ -78,14 +78,6 @@ var C = {
         M.objectsToLoad = Object.keys(M.SOUNDS_SOURCES).length;
     },
 
-    manageCityInfluence(){
-        Object.entries(M.pnjs.Capricol).forEach(pnj => {
-            if(pnj[1].actualQuests.isQuestAccomplished){
-                M.cityInfluence += pnj[1].actualQuests.cityInfluence;
-            }
-        });
-        V.renderCityInfluence(M.cityInfluence);
-    },
 
     refuseQuest(pnj, questTag) {
         M.gameState = M.PLAYING;
