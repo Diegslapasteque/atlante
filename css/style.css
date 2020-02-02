@@ -79,7 +79,12 @@
 }
 
 #Potions-recipes, #Runes-recipes, #Parchemins-recipes{
+    width : 95%;
     padding-bottom : 2%;
+}
+
+#Potions-recipes li , #Runes-recipes li , #Parchemins-recipes li{
+    font-family: 'Source Code Pro';
 }
 
 #book-title{
@@ -138,6 +143,28 @@ ul li{
     margin: 1% auto;
     width : 900px;
     color: white;
+}
+
+
+#info-container{
+    display: block;
+    position: absolute;
+    top : 836px;
+    left : 0;
+    width: 100vw;
+    height: 5vh;
+}
+#recipe-info{
+    display: none;
+    color : white;
+    font-family: 'Press Start 2P';
+    text-align: center;
+    font-size: 20px;
+    margin: .5% auto;
+    width : 900px;
+    color: white;
+    padding : 1%;
+    background: rgba(0, 0, 0, .9);
 }
 
 
