@@ -114,7 +114,7 @@ const ASSETS = {
         interaction : addRessourceToInventory,
 
         sprites: [
-            'assets/tiles/PlancheCauldron.png'
+            'assets/tiles/cauldron.png'
         ]
     },
     'ScrollWorkshop': {
@@ -123,7 +123,7 @@ const ASSETS = {
         interaction : prepareScroll,
 
         sprites: [
-            'assets/tiles/PlancheCauldron.png'
+            'assets/tiles/cauldron.png'
         ]
     },
     'RuneWorkshop': {
@@ -132,7 +132,7 @@ const ASSETS = {
         interaction : prepareScroll,
 
         sprites: [
-            'assets/tiles/PlancheCauldron.png'
+            'assets/tiles/cauldron.png'
         ]
     },
     17:{

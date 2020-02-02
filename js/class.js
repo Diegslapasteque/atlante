@@ -1,5 +1,6 @@
 class Asset {
     constructor(type, x, y, width, height, xColli, yColli, widthColli, heightColli) {
+        this.type = type;
         this.x = Math.round(x);
         this.y = Math.round(y);
         this.width = Math.round(width);
