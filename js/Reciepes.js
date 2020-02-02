@@ -53,4 +53,20 @@ var RECIPES = {
         new Ressources('parchemin', 'scroll'),
         new Ressources('incantationDeCompetance', 'scroll'),
     ],
+    RUNEAFFUTAGE: [
+        new Ressources('pierre', 'rune'),
+        new Ressources('glypheDeReparation', 'rune'),
+    ],
+    RUNEDEREPARATION: [
+        new Ressources('ferrite', 'rune'),
+        new Ressources('glypheDeReparation', 'rune'),
+    ],
+    RUNEDEREPARATIONDEBIJOUX: [
+        new Ressources('lingotOr', 'rune'),
+        new Ressources('glypheDeReparation', 'rune'),
+    ],
+    RUNEDEPROTECTIONDIVINE: [
+        new Ressources('lingotOr', 'rune'),
+        new Ressources('glypheDivine', 'rune'),
+    ],
 };
