@@ -381,9 +381,11 @@ var M = {
     },
 
     haveObjectRequestedInInventory(objectRequested) {
-        M.player_quests_objects.find( (questObject) => {
-            return objectRequested.name === questObject.name;
+        var obj = M.player_quests_objects.find( (questObject) => {
+            return objectRequested === questObject.name;
         });
+
+        return typeof obj !== 'undefined';
     },
 
     spawnPnj(barNumber) {

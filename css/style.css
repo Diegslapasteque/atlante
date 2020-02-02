@@ -179,7 +179,7 @@ ul li{
 }
 
 #inventory-container{
-    display: block;
+    display: none;
     position: absolute;
     top : 0;
     left : 0;
@@ -188,7 +188,7 @@ ul li{
 }
 
 #inventory{
-    display: none;
+    display: block;
     flex-direction: column;
     height: 896px ;
     width: 700px;
@@ -231,6 +231,7 @@ ul li{
     text-align: end;
     color : red;
     width : 100%;
+    display: block;
 }
 #quest-button-give {
     font-size: 1.5rem;
@@ -239,7 +240,7 @@ ul li{
 }
 
 #inventory{
-    display: none;
+    display: block;
     flex-direction: column;
     height: 896px ;
     width: 700px;

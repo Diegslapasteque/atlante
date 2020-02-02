@@ -41,19 +41,19 @@ function preparePotion() {
 function prepareRune(type) {
     console.log(type)
     if (JSON.stringify(RECIPES.RUNEAFFUTAGE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
-        console.log('Succes');
+        M.player_quests_objects.push(M.questObject.Runes.Affutage);
         clearInventory();
     }
     else if (JSON.stringify(RECIPES.RUNEDEREPARATION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
-        console.log('Succes');
+        M.player_quests_objects.push(M.questObject.Runes.Reparation);
         clearInventory();
     }
     else if (JSON.stringify(RECIPES.RUNEDEREPARATIONDEBIJOUX.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)) && type === 'repairGlyph'){
-        console.log('Succes bijoux');
+        M.player_quests_objects.push(M.questObject.Runes.Bijoux);
         clearInventory();
     }
     else if (JSON.stringify(RECIPES.RUNEDEPROTECTIONDIVINE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)) && type === 'divineGlyph'){
-        console.log('Succes');
+        M.player_quests_objects.push(M.questObject.Runes.Divine);
         clearInventory();
     }
     else {
@@ -72,23 +72,23 @@ function prepareScroll() {
     }
 
     if (JSON.stringify(RECIPES.PARCHEMINDESOMEIL.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
-        console.log('Succes');
+        M.player_quests_objects.push(M.questObject.Parchemins.Sommeil);
         clearInventory();
     }
     if (JSON.stringify(RECIPES.PARCHEMINAMOUR.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
-        console.log('Succes');
+        M.player_quests_objects.push(M.questObject.Parchemins.Amour);
         clearInventory();
     }
     if (JSON.stringify(RECIPES.PARCHEMINDEPERSUASION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
-        console.log('Succes');
+        M.player_quests_objects.push(M.questObject.Parchemins.Persuasion);
         clearInventory();
     }
     if (JSON.stringify(RECIPES.PARCHEMINOUBLIE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
-        console.log('Succes');
+        M.player_quests_objects.push(M.questObject.Parchemins.Oublie);
         clearInventory();
     }
     if (JSON.stringify(RECIPES.PARCHEMINDECOMPETENCE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri))){
-        console.log('Succes');
+        M.player_quests_objects.push(M.questObject.Parchemins.Competence);
         clearInventory();
     }
 }

@@ -120,7 +120,7 @@ var V = {
 
 
 
-        inventory.classList.add('active');
+        document.querySelector('#inventory-container').classList.add('active');
         Object.entries(playerInventory).forEach(ressources => {
             if(document.querySelector("#"+ressources[1].name) === null){
                 var nb = playerInventory.filter(playerInventory => playerInventory.name == ressources[1].name).length;
@@ -145,7 +145,7 @@ var V = {
 
         document.querySelector('#quit-inventory').style.cursor = "pointer";
         document.querySelector('#quit-inventory').addEventListener('click',function(event){
-            inventory.classList.remove('active');
+            document.querySelector('#inventory-container').classList.remove('active');
         })
     },
 
@@ -180,6 +180,7 @@ var V = {
         });
         document.querySelector('#quit-book').style.cursor = "pointer";
         document.querySelector('#quit-book').addEventListener('click',function(event){
+            console.log('hello')
             bookContainer.classList.remove('active');
             M.gameState = M.PLAYING;
         })
@@ -190,12 +191,13 @@ var V = {
         document.querySelector('#quest-title').textContent = questTitle;
         document.querySelector('#quest-content').textContent = questContent;
         document.querySelector('#quest-accepted').style.display = (isQuestAccepted) ? 'block' : 'none';
-        document.querySelector('#quest-button-give').style.display = 'none';
-        document.querySelector('#quest-button-give').setAttribute('disabled', 'true');
-        document.querySelector('#quest-button-give').style.display = 'none';
         if(M.haveObjectRequestedInInventory(objectRequested)) {
-            document.querySelector('#quest-button-give').setAttribute('disabled', 'false');
+            document.querySelector('#quest-button-give').style.display = 'block'
         }
+        else {
+            document.querySelector('#quest-button-give').style.display = 'none';
+        }
+
         if(isQuestAccepted === true) {
             document.querySelector('#quest-buttons').style.display = 'none';
         }
