@@ -12,22 +12,94 @@ function preparePotion() {
     }
 
     if ((RECIPES.POTIONDESOIN.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDESOIN.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
-        M.player_quests_objects.push(M.questObject.Potions.Soin);
+        document.querySelector('#loader-border').classList.add('active')
+
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "20%";
+        },1000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "40%";
+        },2000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "60%";
+        },3000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "80%";
+        },4000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "100%";
+            document.querySelector('#loader-border').classList.remove('active')
+            M.player_quests_objects.push(M.questObject.Potions.Soin);
+        },5000);
         clearInventory();
     }
-    if ((RECIPES.POTIONDEGUERISON.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDEGUERISON.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
-        M.player_quests_objects.push(M.questObject.Potions.Guerison);
+    else if ((RECIPES.POTIONDEGUERISON.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDEGUERISON.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
+        document.querySelector('#loader-border').classList.add('active')
+
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "20%";
+        },1000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "40%";
+        },2000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "60%";
+        },3000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "80%";
+        },4000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "100%";
+            document.querySelector('#loader-border').classList.remove('active')
+            M.player_quests_objects.push(M.questObject.Potions.Guerison);
+        },5000);
         clearInventory();
     }
-    if ((RECIPES.POTIONDEFORCE.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDEFORCE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
-        M.player_quests_objects.push(M.questObject.Potions.Force);
+    else if ((RECIPES.POTIONDEFORCE.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDEFORCE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
+        document.querySelector('#loader-border').classList.add('active')
+
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "20%";
+        },1000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "40%";
+        },2000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "60%";
+        },3000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "80%";
+        },4000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "100%";
+            document.querySelector('#loader-border').classList.remove('active')
+            M.player_quests_objects.push(M.questObject.Potions.Force);
+        },5000);
         clearInventory();
     }
-    if ((RECIPES.POTIONDECHANCE.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDECHANCE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
-        M.player_quests_objects.push(M.questObject.Potions.Chance);
+    else if ((RECIPES.POTIONDECHANCE.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDECHANCE.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
+        document.querySelector('#loader-border').classList.add('active')
+
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "20%";
+        },1000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "40%";
+        },2000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "60%";
+        },3000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "80%";
+        },4000);
+        setTimeout(function () {
+            document.querySelector('#loader-inner').style.width = "100%";
+            document.querySelector('#loader-border').classList.remove('active')
+            M.player_quests_objects.push(M.questObject.Potions.Chance);
+        },5000);
         clearInventory();
     }
-    if ((RECIPES.POTIONDERESURECTION.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDERESURECTION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
+    else if ((RECIPES.POTIONDERESURECTION.length == M.player_inventory.length) && (JSON.stringify(RECIPES.POTIONDERESURECTION.sort(tri)) == JSON.stringify(M.player_inventory.sort(tri)))) {
         document.querySelector('#loader-border').classList.add('active')
 
         setTimeout(function () {

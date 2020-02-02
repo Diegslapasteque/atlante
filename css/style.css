@@ -179,7 +179,8 @@ ul li{
 
 .quest-accepted {
     display: none;
-    color: green;
+    margin-bottom: 1rem;
+    color: #00b900;
 }
 
 #inventory-container{
@@ -238,7 +239,6 @@ ul li{
     display: block;
 }
 .quest-button-give {
-    font-size: 1.5rem;
     margin: 0.5em 0;
     display: none;
 }
@@ -308,7 +308,7 @@ ul li{
     color: red;
 }
 
-#next-day, .quest-button-accept, .quest-button-refuse {
+#next-day, .quest-button-accept, .quest-button-refuse, .quest-button-give {
     display: inline-block;
     background-color: #ECECEC;
     border: 5px solid black;
@@ -318,6 +318,12 @@ ul li{
     width: 50%;
     color: black;
     font-family: 'Press Start 2P', sans-serif;
+}
+.quest-button-refuse {
+    background-color: #ff9070;
+}
+.quest-button-give, .quest-button-accept {
+    background-color: #9ff67f;
 }
 #potions{
     margin: 2rem 0 0 1rem;

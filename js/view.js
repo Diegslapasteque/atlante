@@ -74,15 +74,14 @@ var V = {
     },
 
     renderCityInfluence() {
-        M.cityInfluence = 1;
-        Object.entries(M.pnjsInfos.Capricol).forEach(pnj => {
-            if(pnj[1].actualQuests.isQuestAccomplished){
-                console.log(pnj[1].actualQuests.cityInfluence);
-                M.cityInfluence += pnj[1].actualQuests.cityInfluence;
-            }
-        });
-        if(M.cityInfluence <= 0){M.cityInfluence=0;}
-        document.querySelector("#influence").style.width = M.cityInfluence+"%";
+        // M.cityInfluence = 1;
+        // Object.entries(M.pnjsInfos.Capricol).forEach(pnj => {
+        //     if(pnj[1].actualQuests.isQuestAccomplished){
+        //         M.cityInfluence += pnj[1].actualQuests.cityInfluence;
+        //     }
+        // });
+        // if(M.cityInfluence <= 0){M.cityInfluence=0;}
+        // document.querySelector("#influence").style.width = M.cityInfluence+"%";
     },
 
     renderEndOfTHeDay(pnjs) {
